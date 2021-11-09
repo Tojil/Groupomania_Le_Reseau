@@ -3,7 +3,7 @@ const router = express.Router();
 
 const auth = require('../middleware/auth');
 
-//const modCtrl = require('../controllers/modera');
+const modCtrl = require('../controllers/modera');
 
 try{
     router.get('/comments', auth, modCtrl.getAllComments);

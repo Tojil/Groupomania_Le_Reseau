@@ -3,14 +3,14 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const ModeraModels = require ('../Models/ModeraModels.js');
 
-let ModeraModels = new ModeraModels();
+let moderaModels = new ModeraModels();
 
 exports.getAllPosts = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const mod = decodedToken.moderation;
     if(mod == 1){
-        ModeraModels.getAllPosts()
+        moderaModels.getAllPosts()
             .then((response) => {
                 res.status(200).json(JSON.stringify(response));
             })
@@ -26,7 +26,7 @@ exports.deletePost = (req, res, next) => {
     if(mod == 1){
         let postId = req.params.id;
         let sqlInserts = [postId];
-        ModeraModels.deletePost(sqlInserts)
+        moderaModels.deletePost(sqlInserts)
             .then((response) => {
                 res.status(200).json(JSON.stringify(response));
             })
@@ -39,7 +39,7 @@ exports.getAllComments = (req, res, next) => {
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const mod = decodedToken.moderation;
     if(mod == 1){
-        ModeraModels.getAllComments()
+        moderaModels.getAllComments()
             .then((response) =>{
                 res.status(200).json(JSON.stringify(response));
             })
@@ -54,7 +54,7 @@ exports.deleteComment = (req, res, next) => {
     if(mod == 1){
         let commentId = req.params.id;
         let sqlInserts = [commentId];
-        ModeraModels.deleteComment(sqlInserts)
+        moderaModels.deleteComment(sqlInserts)
             .then((response) =>{
                 res.status(200).json(JSON.stringify(response));
             })
