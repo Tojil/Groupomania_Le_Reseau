@@ -6,7 +6,7 @@ let connecTodb = mysql.createConnection({
     password: 'tojil1908', 
     database: 'groupomania_le_reseau_db', 
 });
-connectdb.connect(function(err) { 
+connecTodb.connect(function(err) { 
     if (err) throw err;
     console.log('Connecté!')
 });
