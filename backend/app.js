@@ -4,7 +4,7 @@ const helmet = require("helmet");
 const app = express();
 const routesPosts = require('./routes/routesPosts');
 const routesUsers = require('./routes/routesUsers');
-const routesMod = require('./routes/routesModera');
+const routesModera = require('./routes/routesModera');
 
 app.use(xss());
 app.use (helmet()); 
