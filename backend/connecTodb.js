@@ -4,7 +4,7 @@ let connecTodb = mysql.createConnection({
     host: 'localhost', 
     user: 'root', 
     password: 'tojil1908', 
-    database: 'groupomania_le_reseau_db', 
+    database: 'groupomania_le_reseau_db.sql', 
 });
 connecTodb.connect(function(err) { 
     if (err) throw err;
@@ -12,3 +12,4 @@ connecTodb.connect(function(err) {
 });
 
 module.exports = connecTodb;
+
