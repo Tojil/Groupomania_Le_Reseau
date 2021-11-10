@@ -20,6 +20,7 @@
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
     "password-validator": "^5.2.1",
+    "sass-loader": "^12.3.0",
     "xhr": "^2.6.0",
     "xss-clean": "^0.1.1"
   }
