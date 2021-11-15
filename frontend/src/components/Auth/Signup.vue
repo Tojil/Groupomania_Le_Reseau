@@ -1,5 +1,5 @@
 <template>
-    <!-- <v-app class="signup ma-auto mt-6" v-if="form">
+    <v-app class="signup ma-auto mt-6" v-if="form">
         <v-card class="signup__card" raised>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
@@ -23,16 +23,17 @@
                         <v-card-actions>
                           <v-spacer></v-spacer>
                           <v-btn @click="sendSignup()" class="success">Se connecter</v-btn>
+                          
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
+                    <v-btn :to="{name: 'login'}" class="success">login</v-btn>
                   </div>
                 </template>
                 <p v-if="msg">{{ message }}</p>
             </v-card-text>
         </v-card>
-    </v-app> -->
-    <div>Signup</div>
+    </v-app>
 </template>
 
 
@@ -72,7 +73,8 @@ export default {
             dataSignupS: "", 
             form: true,
             msg: false,
-            message: ""
+            message: "",
+            dialog: false
         //}
     }),
     methods: {
@@ -93,4 +95,4 @@ export default {
         }
     }
 }
-
+</script>

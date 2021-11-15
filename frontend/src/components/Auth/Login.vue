@@ -9,6 +9,7 @@
             </v-card-text>
             
             <v-btn :disabled="!valid" class="success mb-3" @click="sendLogin()">Valider</v-btn>
+            <v-btn :to="{name: 'signup'}" class="success">Signup</v-btn>
             <p v-if="msg">{{ message }}</p>
             
         </v-card>
