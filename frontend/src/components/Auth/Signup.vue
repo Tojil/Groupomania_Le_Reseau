@@ -1,5 +1,5 @@
 <template>
-    <v-app class="signup ma-auto mt-6" v-if="form">
+    <!-- <v-app class="signup ma-auto mt-6" v-if="form">
         <v-card class="signup__card" raised>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
@@ -31,7 +31,8 @@
                 <p v-if="msg">{{ message }}</p>
             </v-card-text>
         </v-card>
-    </v-app>
+    </v-app> -->
+    <div>Signup</div>
 </template>
 
 
@@ -40,8 +41,9 @@ import axios from "axios"
 
 export default {
     name : "Signup",
-    data(){
-        return{
+    data: () => ({
+
+        // return{
             valid: true,
             firstNameRules: [
                 v => !!v || 'Renseignez votre prénom',
@@ -71,8 +73,8 @@ export default {
             form: true,
             msg: false,
             message: ""
-        }
-    },
+        //}
+    }),
     methods: {
         sendSignup(){
             this.dataSignupS = JSON.stringify(this.dataSignup)

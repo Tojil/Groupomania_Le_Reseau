@@ -2,7 +2,8 @@
     <v-app id="auth">
         
         <v-container class="auth">
-            
+             <login></login>
+             <signup></signup>
 
             <div class="auth__boutons">
                 <v-btn class="auth__boutons--ind" color="black white--text" @click="component='signup'" rounded>S'inscrire</v-btn>
@@ -17,8 +18,8 @@
 </template>
 
 <script>
-    import Signup from "./Signup.vue"
-    import Login from "./Login.vue"
+    import Signup from "../components/Auth/Signup";
+    import Login from "../components/Auth/Login";
 
     export default {
         name : "Auth",
@@ -30,8 +31,8 @@
         },
         
         components: {
-            'login': Login,
-            'signup': Signup
+            Login,
+            Signup
         }
     }
 </script>

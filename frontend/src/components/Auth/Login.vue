@@ -19,7 +19,7 @@
 import axios from "axios"
 
 export default {
-    name: "sogin",
+    name: "login",
     data(){
         return{
             valid: true,
