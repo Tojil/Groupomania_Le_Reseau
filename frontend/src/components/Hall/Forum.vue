@@ -200,7 +200,7 @@ export default {
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
-                    window.location.assign('http://localhost:8081/Accueil/forum');
+                    window.location.assign('http://localhost:8081/hall/forum');
                 })
                 .catch(error => {
                     console.log(error);    
@@ -211,7 +211,7 @@ export default {
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
-                    window.location.assign('http://localhost:8081/Accueil/forum');
+                    window.location.assign('http://localhost:8081/hall/forum');
                 })
                 .catch(error => {
                     console.log(error);
@@ -235,7 +235,7 @@ export default {
                     this.dataPost.userId = "";
                     this.dataPost.id = "";
                     this.dialogUpPost = false;
-                    window.location.assign('http://localhost:8081/Accueil/forum');
+                    window.location.assign('http://localhost:8081/hall/forum');
                 })
                 .catch(error => {
                     console.log(error);
@@ -257,7 +257,7 @@ export default {
                     this.dataCom.userId = "";
                     this.afficheFrmCm = false;
                     this.dialogUpCom = false;
-                    window.location.assign('http://localhost:8081/Accueil/forum');
+                    window.location.assign('http://localhost:8081/hall/forum');
                 })
                 .catch(error => {
                     console.log(error);
@@ -265,7 +265,7 @@ export default {
                 })
         },
         afficheForm(){
-            this.$router.push('/Accueil/forum/Post')
+            this.$router.push('/hall/forum/post')
         },
         afficheFormCom(){
             this.afficheFrmCm = true
@@ -289,7 +289,7 @@ export default {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
                     this.dataLike.liked = false;
-                    window.location.assign('http://localhost:8081/Accueil/forum');
+                    window.location.assign('http://localhost:8081/hall/forum');
                 })
                 .catch(error => {
                     console.log(error);
