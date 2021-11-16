@@ -1,6 +1,6 @@
 <template>
     <v-app class="login ma-auto mt-6">
-        <v-card raised>
+        <v-card elevation="19" raised>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
                     <v-text-field v-model="dataLogin.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required autofocus></v-text-field>
@@ -9,7 +9,7 @@
             </v-card-text>
             
             <v-btn :disabled="!valid" class="success mb-3" @click="sendLogin()">Valider</v-btn>
-            <v-btn :to="{name: 'signup'}" class="success">Signup</v-btn>
+            
             <p v-if="msg">{{ message }}</p>
             
         </v-card>
@@ -61,7 +61,15 @@ export default {
 }
 </script>
 
-<style scoped>
 
-</style>>
 
+<style lang="scss">
+    .login{
+        position: flex;
+        flex-direction: row;
+        top: 5%;
+        width: 350px;
+        height: 200px;
+        text-align: center;
+    }
+</style>
