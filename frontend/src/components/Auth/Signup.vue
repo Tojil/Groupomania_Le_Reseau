@@ -1,6 +1,6 @@
 <template>
     <v-app class="signup ma-auto mt-6" v-if="form">
-        <v-card class="signup__card" raised>
+        <v-card outlined elevation="13" class="signup__card" raised>
             <v-card-text>
                 <v-form ref="form" v-model="valid">
                     <v-text-field  v-model="dataSignup.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" autofocus required></v-text-field>
@@ -27,7 +27,6 @@
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
-                    <v-btn :to="{name: 'login'}" class="success">login</v-btn>
                   </div>
                 </template>
                 <p v-if="msg">{{ message }}</p>
@@ -96,3 +95,14 @@ export default {
     }
 }
 </script>
+
+<style lang="scss">
+    .signup{
+        position: flex;
+        flex-direction: row;
+        top: 5%;
+        width: 350px;
+        height: 200px;
+        text-align: center;
+    }
+</style>
