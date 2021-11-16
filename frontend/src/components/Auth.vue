@@ -5,8 +5,8 @@
          
 
             <div class="auth__boutons">
-                <v-btn outlined elevation="13" class="auth__boutons--ind" color="indigo black--text" @click="component='signup'" rounded>S'inscrire</v-btn>
-                <v-btn outlined elevation="13" class="auth__boutons--ind" color="indigo black--text green--hover" @click="component='login'" rounded>Se connecter</v-btn>
+                <v-btn small outlined elevation="13" class="auth__boutons--ind" color="indigo black--text" @click="component='signup'" rounded>S'inscrire</v-btn>
+                <v-btn small outlined elevation="13" class="auth__boutons--ind" color="indigo black--text green--hover" @click="component='login'" rounded>Se connecter</v-btn>
             </div>
             
             <component v-bind:is="component"></component>
@@ -38,7 +38,8 @@
 <style lang="scss">
 
         #auth {
-        background: no-repeat center top/20% url("../assets/icon-above-font.png") ;
+        background: no-repeat center top/20% url("../assets/icon-above-font.png");
+        
         display: flex;
         flex-direction: row;
 
@@ -53,7 +54,7 @@
             margin-bottom: 2%;
             &--ind{
                 margin: 4%;
-                width: 150px ;
+                width: 130px ;
                 
             }
         }
