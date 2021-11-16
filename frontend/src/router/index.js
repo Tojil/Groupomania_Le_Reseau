@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 const Auth = () => import(/* webpackChunkName: "auth" */ '../components/Auth');
 const Accueil = () => import(/* webpackChunkName: "accueil" */ '../components/Accueil');
 const Profil = () => import(/* webpackChunkName: "profil" */ '../components/Hall/Profil');
+const Forum = () => import(/* webpackChunkName: "forum" */ '../components/Hall/Forum');
 const Post = () => import(/* webpackChunkName: "formpost" */ '../components/Hall/FormPost');
 
 
@@ -21,9 +22,14 @@ const routes = [
     component: Accueil
   },
   {
-    path: '/accueil/profil',
+    path: '/hall/profil',
     name: 'profil',
     component: Profil
+  },
+  {
+    path: '/hall/forum',
+    name: 'forum',
+    component: Forum
   },
   {
     path:'/hall/forum/post',
