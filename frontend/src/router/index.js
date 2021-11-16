@@ -1,25 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const Login = () => import(/* webpackChunkName: "login" */ '../components/Auth/Login');
-const Signup = () => import(/* webpackChunkName: "signup" */ '../components/Auth/Signup');
+const Auth = () => import(/* webpackChunkName: "auth" */ '../components/Auth');
+// import Login from '../components/Auth/Login';
+// import Signup from '../components/Auth/Signup';
+const Accueil = () => import(/* webpackChunkName: "accueil" */ '../components/Accueil');
+const Profil = () => import(/* webpackChunkName: "profil" */ '../components/Hall/Profil');
+
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: Login
+    name: 'auth',
+    component: Auth
   },
   {
-    path: '/signup',
-    name: 'signup',
-    component: Signup
+    path: '/accueil',
+    name: 'accueil',
+    component: Accueil
   },
   {
-    path: '/login',
-    name: 'login',
-    component: Login
+    path: '/profil',
+    name: 'profil',
+    component: Profil
   }
 ]
 
