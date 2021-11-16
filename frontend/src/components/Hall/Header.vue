@@ -82,7 +82,7 @@ export default {
              this.$router.push('/');
         },
         moderation(){
-            this.$router.push('/Hall/Moderation')
+            this.$router.push('/hall/moderation')
         }
     },
     mounted(){
