@@ -5,6 +5,7 @@ const Accueil = () => import(/* webpackChunkName: "accueil" */ '../components/Ac
 const Profil = () => import(/* webpackChunkName: "profil" */ '../components/Hall/Profil');
 const Forum = () => import(/* webpackChunkName: "forum" */ '../components/Hall/Forum');
 const Post = () => import(/* webpackChunkName: "formpost" */ '../components/Hall/FormPost');
+const Moderation = () => import(/* webpackChunkName: "moderation" */ '../components/Hall/Moderation');
 
 
 
@@ -35,7 +36,12 @@ const routes = [
     path:'/hall/forum/post',
     name: 'post',
     component: Post
-  }
+  },
+  {
+    path: '/hall/moderation',
+    name: 'moderation',
+    component: Moderation
+  },
 ]
 
 const router = new VueRouter({
