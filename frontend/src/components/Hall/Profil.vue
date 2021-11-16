@@ -1,8 +1,9 @@
 <template>
-    <div id="profil" class="d-flex justify-center">
+    <v-app id="profil" class="d-flex justify-center">
+
         <top-header/>
         <v-card class="ma-12" raised>
-            <v-img class="logo" src="../../assets/logo.png" width="100px" contain></v-img>
+            <v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img>
             <v-card-title class="my-3 justify-center">
                 <h1>Mon profil</h1>
             </v-card-title>
@@ -56,7 +57,7 @@
                 </v-card-actions>
             </v-card>
         </v-dialog>
-    </div>
+    </v-app>
 </template>
 
 <script>
@@ -152,13 +153,14 @@ export default {
 </script>
 
 <style lang="scss">
+
     .logo{
         margin-top: 5%;
-        margin-left: 30%;
+        margin-left: 10%;
     }
-@media screen and (min-width: 200px) and (max-width: 640px) {
-  #profil {
-    padding-left: 10%;
-  }
-}
+// @media screen and (min-width: 200px) and (max-width: 640px) {
+//   #profil {
+//     padding-left: 30%;
+//   }
+// }
 </style>
