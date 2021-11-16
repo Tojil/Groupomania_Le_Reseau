@@ -17,7 +17,7 @@
 
             <v-card-actions>
                 <v-btn  :disabled="!valid" class="success" @click="sendPost">Poster</v-btn>
-                <v-btn text href="/Hall/Forum" color="black">Annuler</v-btn>
+                <v-btn text href="/hall/forum" color="black">Annuler</v-btn>
             </v-card-actions>
 
         </v-card>
