@@ -38,13 +38,14 @@
 <style lang="scss">
 
         #auth {
-        background: no-repeat center top/20% url("../assets/icon-above-font.png");
+        background: no-repeat center top/150% url("../assets/icon.png");
         
         display: flex;
         flex-direction: row;
 
     }
     .auth {
+        background: no-repeat center top/30% url("../assets/icon-above-font.svg");
         &__boutons{
             display: flex;
             flex-direction: row;

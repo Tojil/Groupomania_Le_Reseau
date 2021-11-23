@@ -5,6 +5,7 @@ const app = express();
 const routesPosts = require('./routes/routesPosts');
 const routesUsers = require('./routes/routesUsers');
 const routesModera = require('./routes/routesModera');
+const { join } = require('path');
 
 app.use(xss());
 app.use (helmet()); 
@@ -17,6 +18,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/images', express.static(join(__dirname, 'images')));
 app.use('/api/posts', routesPosts);
 app.use('/api/auth', routesUsers);
 app.use('/api/moderation', routesModera);

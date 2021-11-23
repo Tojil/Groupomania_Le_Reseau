@@ -8,8 +8,8 @@ const postsCtrl = require('../controllers/posts');
 
 try{
     router.get('/', auth, postsCtrl.getAllPosts);
-    router.post('/', auth, postsCtrl.createPost);
-    router.put('/:id', auth, postsCtrl.updatePost);
+    router.post('/', auth, multer, postsCtrl.createPost);
+    router.put('/:id', auth, multer, postsCtrl.updatePost);
     router.delete('/:id', auth, postsCtrl.deletePost); 
 
     

@@ -158,9 +158,9 @@ export default {
         margin-top: 5%;
         margin-left: 10%;
     }
-// @media screen and (min-width: 200px) and (max-width: 640px) {
-//   #profil {
-//     padding-left: 30%;
-//   }
-// }
+@media screen and (min-width: 200px) and (max-width: 640px) {
+  #profil {
+    padding-left: 30%;
+  }
+}
 </style>

@@ -6,6 +6,9 @@
             <v-card-title class="mb-3">
                 <h2>Nouveau post</h2>
             </v-card-title>
+            <input type="file" @change="onFileSelected">
+                <v-btn class="ma-3" color="black white--text" @click="afficheForm">Upload une image</v-btn>
+                <v-btn class="ma-3" color="black white--text" @click="afficheForm">Ajouter une video</v-btn>
             
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
@@ -13,6 +16,7 @@
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
                 </v-form>
             </v-card-text>
+
             
 
             <v-card-actions>
@@ -49,9 +53,14 @@ export default {
             dataPostS: "",
             msg: false,
             message: "",
+            selectedFile: null
         }
     },
     methods: {
+        onFileSelected(event) {
+            this.selectedFile = event.target.files[0];
+            axios.post("http://localhost:3000/images/");
+        },
         sendPost(){
             this.dataPostS = JSON.stringify(this.dataPost);
             axios.post("http://localhost:3000/api/posts/", this.dataPostS, {headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.token}})
