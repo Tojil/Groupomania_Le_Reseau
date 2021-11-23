@@ -6,12 +6,13 @@
             <v-card-title class="mb-3">
                 <h2>Nouveau post</h2>
             </v-card-title>
-            <input type="file" @change="onFileSelected">
-                <v-btn class="ma-3" color="black white--text" @click="afficheForm">Upload une image</v-btn>
+            <input type="file" @change="onFileSelected($event)">
+                <v-btn class="ma-3" color="black white--text" @click="afficheForm">Ajouter une image</v-btn>
                 <v-btn class="ma-3" color="black white--text" @click="afficheForm">Ajouter une video</v-btn>
             
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
+                    <img :src="selectedFile" alt="">
                     <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field>
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
                 </v-form>
@@ -58,8 +59,18 @@ export default {
     },
     methods: {
         onFileSelected(event) {
-            this.selectedFile = event.target.files[0];
-            axios.post("http://localhost:3000/images/");
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                this.selectedFile = e.target.result;
+            }
+            reader.readAsDataURL(event.target.files[0]);
+            let form = new FormData(); // creation d'un formulaire pour l'image
+            form.append('image', event.target.files[0]);
+            axios.post("http://localhost:3000/api/images/", form, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            });
         },
         sendPost(){
             this.dataPostS = JSON.stringify(this.dataPost);

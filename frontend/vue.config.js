@@ -2,6 +2,7 @@ module.exports = {
   transpileDependencies: [
     'vuetify'
   ],
+  chainWebpack: config => config.optimization.minimize(false),
 
   pluginOptions: {
     i18n: {
