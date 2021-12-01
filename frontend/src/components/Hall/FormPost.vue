@@ -7,12 +7,12 @@
                 <h2>Nouveau post</h2>
             </v-card-title>
             <input type="file" @change="onFileSelected($event)">
-                <v-btn class="ma-3" color="black white--text" @click="afficheForm">Ajouter une image</v-btn>
+                <v-btn class="ma-3" color="black white--text" @click="onFileSelected($event)">Ajouter une image</v-btn>
                 <v-btn class="ma-3" color="black white--text" @click="afficheForm">Ajouter une video</v-btn>
             
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
-                    <img :src="selectedFile" alt="">
+                    <img :src="onFileSelected($event)" alt="">
                     <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field>
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
                 </v-form>

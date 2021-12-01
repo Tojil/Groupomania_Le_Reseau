@@ -17,6 +17,11 @@ const routes = [
     name: 'auth',
     component: Auth
   },
+  // {
+  //   path: '/images',
+  //   name: 'images',
+  //   component: Images
+  // },
   {
     path: '/accueil',
     name: 'accueil',
