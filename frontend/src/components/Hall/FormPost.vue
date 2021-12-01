@@ -18,7 +18,6 @@
                 </v-form>
             </v-card-text>
 
-            
 
             <v-card-actions>
                 <v-btn  :disabled="!valid" class="success" @click="sendPost">Poster</v-btn>
