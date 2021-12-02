@@ -12,7 +12,19 @@ exports.getAllPosts = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         });
 }
-exports.createPost = (req, res, next) => { 
+exports.imagePost = (req, res, next) => {
+    const postObject = JSON.parse(req.body.PostsModels);
+    delete postObject._id;
+    const imageM = new PostsModels({
+        ...postObject,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    });
+    imageM.save()// Enregistre dans la db l'objet et renvoie une promesse
+        .then(() => res.status(201).json({ message: 'Nouvelle image enregistrée !'}))
+        .catch(error => res.status(400).json({ error }));
+};
+
+exports.createPost = (req, res, next) => {
     let title = req.body.title;
     let userId = req.body.userId;
     let content = req.body.content;

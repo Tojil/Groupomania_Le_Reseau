@@ -1,13 +1,12 @@
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
 
+
 class PostsModels {
     constructor() {
     }
-    
-
     getAllPosts(){
-        let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(DATE(posts.date), '%d/%m/%Y') AS date, TIME(posts.date) AS time, posts.likes, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.date DESC";
+        let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(DATE(posts.date), '%d/%m/%Y') AS date, TIME(posts.date) AS time, posts.likes, posts.media, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.date DESC";
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields) {
                 if (err) throw err;
@@ -16,7 +15,7 @@ class PostsModels {
         })
     }
     createPost(sqlInserts){
-        let sql = 'INSERT INTO posts VALUES(NULL, ?, ?, ?, NOW(), 0)';
+        let sql = 'INSERT INTO posts VALUES(NULL, ?, ?, ?, NOW(), 0, ?)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields) {
