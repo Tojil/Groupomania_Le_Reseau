@@ -45,7 +45,7 @@ export default {
             this.dataLoginS = JSON.stringify(this.dataLogin);
             axios.post('http://localhost:3000/api/auth/login', this.dataLoginS, {headers: {'Content-Type': 'application/json'}})
                 .then(response => {
-                    let log = JSON.parse(response.data);
+                    let log = response.data;
                     localStorage.userId = log.userId;
                     localStorage.token = log.token;
                     localStorage.moderation = log.moderation;
