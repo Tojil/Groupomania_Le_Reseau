@@ -28,13 +28,22 @@ export default {
         return{
             items: [
             {
-                src: require("../assets/images/immeuble.jpg"),
+                src: require("../assets/images/luneChantier.jpg"),
             },
             {
-                src: require("../assets/images/openspace.jpg"),
+                src: require("../assets/images/chateauV.jpg"),
             },
             {
-                src: require("../assets/images/chocolat.jpg"),
+                src: require("../assets/images/cartoucherie.jpg")
+            },
+            {
+                src: require("../assets/images/laScene.jpg"),
+            },
+            {
+                src: require("../assets/images/arretTrain.jpg"),
+            },
+            {
+                src: require("../assets/images/chantier.jpg"),
             },
             ]
             

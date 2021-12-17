@@ -10,7 +10,9 @@
             
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
+                    <div>
                     <img :src="selectedFile" alt="">
+                    </div>
                     <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field>
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
                 </v-form>
@@ -94,5 +96,14 @@ export default {
 }
 </script>
 <style lang="scss">
+img {
+    max-width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.button {
+    display: flex;
+}
 
 </style>
