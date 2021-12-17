@@ -28,7 +28,8 @@ exports.createPost = (req, res, next) => {
     let title = req.body.title;
     let userId = req.body.userId;
     let content = req.body.content;
-    let sqlInserts = [userId, title, content];
+    let image = req.body.image;
+    let sqlInserts = [userId, title, content, image];
     postsModels.createPost(sqlInserts)
         .then((response) => {
             res.status(201).json(JSON.stringify(response));

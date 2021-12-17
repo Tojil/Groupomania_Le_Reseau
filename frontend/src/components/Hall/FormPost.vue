@@ -53,7 +53,8 @@ export default {
             dataPostS: "",
             msg: false,
             message: "",
-            selectedFile: null
+            selectedFile: null,
+            image: undefined
         }
     },
     methods: {
@@ -63,17 +64,23 @@ export default {
                 this.selectedFile = e.target.result;
             }
             reader.readAsDataURL(event.target.files[0]);
-            let form = new FormData(); // creation d'un formulaire pour l'image
-            form.append('image', event.target.files[0]);
-            axios.post("http://localhost:3000/api/images/", form, {
-                headers: {
-                    'content-type': 'multipart/form-data'
-                }
-            });
+            // let form = new FormData(); // creation d'un formulaire pour l'image
+            // form.append('image', event.target.files[0]);
+            // axios.post("http://localhost:3000/api/images/", form, {
+            //     headers: {
+            //         'content-type': 'multipart/form-data'
+            //     }
+            // });
         },
         sendPost(){
-            this.dataPostS = JSON.stringify(this.dataPost);
-            axios.post("http://localhost:3000/api/posts/", this.dataPostS, {headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.token}})
+            let form = new FormData();
+            form.append("title", this.dataPost.title);
+            form.append("content", this.dataPost.content);
+            form.append("image", this.selectedFile);
+            form.append("userId", localStorage.userId);
+            console.log("test");
+            //this.dataPostS = JSON.stringify(this.dataPost);
+            axios.post("http://localhost:3000/api/posts/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     this.message = rep.message;

@@ -15,7 +15,7 @@ class PostsModels {
         })
     }
     createPost(sqlInserts){
-        let sql = 'INSERT INTO posts (userId, title, content, date, likes) VALUES(?, ?, ?, NOW(), 0)';
+        let sql = 'INSERT INTO posts (userId, title, content, date, likes, media) VALUES(?, ?, ?, NOW(), 0, ?)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields) {
