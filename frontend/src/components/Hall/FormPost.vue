@@ -104,7 +104,7 @@ export default {
 </script>
 <style lang="scss">
 img {
-    max-width: 200px;
+    max-width: 250px;
     display: flex;
     flex-direction: row;
     justify-content: center;

@@ -11,11 +11,11 @@
                 <v-btn class="ma-3" color="black white--text" @click="afficheForm">Créer un post</v-btn>
                 
                 <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
+                    <v-img height="250" :src="post.media" class="forum__post__media"></v-img>
                     <div class="d-flex justify-space-between">
                         <v-card-title>
                             <h2 class="forum__post__title ml-0">{{ post.title }}</h2>
                         </v-card-title>
-                        <v-img height="250" :src="post.media" class="forum__post__media"></v-img>
                         <v-card-actions class=" forum__post__manage" v-if="post.userId == userId">
                             <v-btn class="forum__post__manage--btn" color="black" title="modifier le post" @click.stop="goDialogUpPost(post.title, post.content, post.id)" icon>
                                 <v-icon>mdi-pencil</v-icon>
