@@ -1,4 +1,4 @@
-<template>
+<template> <!-- Le template permet d'utiliser des directives de Vue sans créer un élément html -->
     <v-app id="formPost">
         <top-header/> <!-- Ici on récupére le composant Header.vue declaré plus bas dans les components-->
         <h1 class="ml-12">Forum</h1>
@@ -6,21 +6,21 @@
             <v-card-title class="mb-3">
                 <h2>Nouveau post</h2>
             </v-card-title>
-            <input type="file" @change="onFileSelected($event)"> <!-- Ici nous allons récuperer le fichier image -->
+            <input type="file" @change="onFileSelected($event)"> <!-- Ici nous allons chercher le fichier image -->
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
                     <div>
-                    <img :src="selectedFile" alt=""> <!-- Cest l'image que nous avons récpéré -->
+                    <img :src="selectedFile" alt=""> <!-- Cest l'image que nous avons récupéré -->
                     </div>
-                    <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field>
-                    <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
+                    <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field> <!-- Champ de saisie pour le titre si les regles sont respectés -->
+                    <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea> <!-- Champ de saisie pour le commentaire si les regles sont respectés -->
                 </v-form>
             </v-card-text>
 
 
             <v-card-actions>
-                <v-btn  :disabled="!valid" class="success" @click="sendPost">Poster</v-btn>
-                <v-btn text href="/hall/forum" color="black">Annuler</v-btn>
+                <v-btn  :disabled="!valid" class="success" @click="sendPost">Poster</v-btn> <!-- Si les données sont valides le boutton est activé-->
+                <v-btn text href="/hall/forum" color="black">Annuler</v-btn> <!-- Le bouton Annuler nous renvoie a la page du Forum.vue -->
             </v-card-actions>
 
         </v-card>
@@ -57,6 +57,7 @@ export default {
             image: undefined
         }
     },
+    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans votre application
     methods: { // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
         onFileSelected(event) {
             let reader = new FileReader();
