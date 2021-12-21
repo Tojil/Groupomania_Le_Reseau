@@ -63,7 +63,7 @@
 <script>
 export default {
     name : 'Header',
-    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
+    data(){ // Ici on stock les données et les regles que nous allons utiliser en tant que variables reactives
         return {
             modo: "",
             drawer: true,

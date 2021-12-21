@@ -7,7 +7,8 @@
             <v-container >
                 <v-btn class="ma-3" color="black white--text" @click="afficheForm">Créer un post</v-btn>
                 <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
-                    <v-img height="250" :src="post.media" class="forum__post__media"></v-img>
+                    <!-- v-img height="250" :src="post.media" class="forum__post__media"></v-img-->
+                    <img :src="`http://localhost:3000/${post.media}`">
                     <div class="d-flex justify-space-between">
                         <v-card-title>
                             <h2 class="forum__post__title ml-0">{{ post.title }}</h2>
@@ -279,7 +280,7 @@ export default {
     components: {  // Ici on declare le compossant qu'on a recupéré
         "top-header": Header, 
     },
-    mounted(){
+    mounted(){  // 
         this.userId = localStorage.userId;
         axios.get("http://localhost:3000/api/posts", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {

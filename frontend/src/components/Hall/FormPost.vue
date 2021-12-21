@@ -64,12 +64,13 @@ export default {
                 this.selectedFile = e.target.result;
             }
             reader.readAsDataURL(event.target.files[0]);
+            this.image = event.target.files[0];
         },
         sendPost(){ // La methode sendPost nous permet de stocker dans la base de données les infos renseignés par l'utilisateur
             let form = new FormData();
             form.append("title", this.dataPost.title);
             form.append("content", this.dataPost.content);
-            form.append("image", this.selectedFile);
+            form.append("image", this.image);
             form.append("userId", localStorage.userId);
             axios.post("http://localhost:3000/api/posts/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {

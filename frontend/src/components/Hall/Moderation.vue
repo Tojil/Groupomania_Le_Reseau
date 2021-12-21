@@ -75,11 +75,11 @@ export default {
             this.showPosts = true,
             this.showComments = false
         },
-        clickComments(){   // Cette methose sert à afficher tous les commentaires
+        clickComments(){   // Cette methode sert à afficher tous les commentaires
             this.showPosts = false,
             this.showComments = true
         },
-        deletePost(pId){   //  Cette methose sert à supprimer un post(publication)
+        deletePost(pId){   //  Cette methode sert à supprimer un post(publication)
             axios.delete("http://localhost:3000/api/moderation/posts/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
@@ -91,7 +91,7 @@ export default {
                     console.log(error);    
                 })
         },
-        deleteComment(cId){   // Cette methose sert à supprimer un commentaire
+        deleteComment(cId){   // Cette methode sert à supprimer un commentaire
             axios.delete("http://localhost:3000/api/moderation/comment/" + cId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);

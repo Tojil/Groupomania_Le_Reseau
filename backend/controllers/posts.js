@@ -25,10 +25,11 @@ exports.imagePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
+    console.log(req.file)
     let title = req.body.title;
     let userId = req.body.userId;
     let content = req.body.content;
-    let image = req.body.image;
+    let image = req.file.path;
     let sqlInserts = [userId, title, content, image];
     postsModels.createPost(sqlInserts)
         .then((response) => {
