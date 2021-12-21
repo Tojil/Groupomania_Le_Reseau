@@ -1,6 +1,6 @@
-<template>
-    <div class="head">
-        <v-navigation-drawer
+<template>   <!-- Le template permet d'utiliser des directives de Vue sans créer un élément html -->
+    <div class="head">  <!-- Bar de navigation vertical -->
+        <v-navigation-drawer  
             v-model="drawer"
             color="black"
             expand-on-hover
@@ -14,12 +14,12 @@
             <v-list dense nav>
                 <v-list-item two-line class="px-0 ">
                     <v-list-item-avatar>
-                        <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
+                        <v-img src="../../assets/images/Sergio_8.jpg" alt="Photo du profil" contain></v-img>
                     </v-list-item-avatar>
                         
                     <v-list-item-content>
-                        <v-list-item-title>
-                            Intranet Groupomania
+                        <v-list-item-title> <!--  Nom du profil  -->
+                            <h2>Sergio Canto</h2>
                         </v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
@@ -74,9 +74,8 @@ export default {
             ],
         }
     },
-    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
-    methods: {
-        logout(){
+    methods: {  // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
+        logout(){  // Cette methode permet de se deconecter du reseau groupomania
             localStorage.userId = "";
             localStorage.token = "";
             localStorage.moderation = "";

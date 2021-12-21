@@ -14,8 +14,8 @@
 
             <v-card-text class="ml-2 black--text">
                 <h2>Prénom : {{ dataGet.firstName }}</h2>
-                <p>Nom : {{ dataGet.lastName }}</p>
-                <p>E-mail : {{ dataGet.email }}</p>
+                <h2>Nom : {{ dataGet.lastName }}</h2>
+                <h3>E-mail : {{ dataGet.email }}</h3>
             </v-card-text>
 
             <v-card-actions class="d-flex justify-space-between">
@@ -162,6 +162,9 @@ export default {
     .logo{
         margin-top: 5%;
         margin-left: 10%;
+    }
+    h2{
+        margin-bottom: 15px;
     }
 // @media screen and (min-width: 200px) and (max-width: 640px) {
 //   #profil {

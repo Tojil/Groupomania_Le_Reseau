@@ -144,8 +144,7 @@ export default {
             
         }
     },
-    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
-    methods: {
+    methods: {   // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
         afficheCom(pId){  // Cette methode appel le commentaire de la base de données
             this.postId = pId;
             this.afficheFrmCm = false;
@@ -277,7 +276,7 @@ export default {
                 })
         },
     },
-    components: {
+    components: {  // Ici on declare le compossant qu'on a recupéré
         "top-header": Header, 
     },
     mounted(){
