@@ -1,17 +1,16 @@
 <template>
     <v-app id="formPost">
-        <top-header/>
+        <top-header/> <!-- Ici on récupére le composant Header.vue declaré plus bas dans les components-->
         <h1 class="ml-12">Forum</h1>
         <v-card class="ma-3 ml-12">
             <v-card-title class="mb-3">
                 <h2>Nouveau post</h2>
             </v-card-title>
-            <input type="file" @change="onFileSelected($event)">
-            
+            <input type="file" @change="onFileSelected($event)"> <!-- Ici nous allons récuperer le fichier image -->
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
                     <div>
-                    <img :src="selectedFile" alt="">
+                    <img :src="selectedFile" alt=""> <!-- Cest l'image que nous avons récpéré -->
                     </div>
                     <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field>
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea>
@@ -28,13 +27,14 @@
     </v-app>
 </template>
 <script>
+// Ici on import les composants dont on a besoin 
 import axios from "axios"
 import Header from "./Header.vue"
 
 
 export default {
     name: "FormPost",
-    data(){
+    data(){ // Ici on stocke les données et les regles que nous allons utiliser dans des variables reactives
         return{
             valid: true,
             titleRules: [
@@ -57,29 +57,20 @@ export default {
             image: undefined
         }
     },
-    methods: {
+    methods: { // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
         onFileSelected(event) {
             let reader = new FileReader();
             reader.onload = (e) => {
                 this.selectedFile = e.target.result;
             }
             reader.readAsDataURL(event.target.files[0]);
-            // let form = new FormData(); // creation d'un formulaire pour l'image
-            // form.append('image', event.target.files[0]);
-            // axios.post("http://localhost:3000/api/images/", form, {
-            //     headers: {
-            //         'content-type': 'multipart/form-data'
-            //     }
-            // });
         },
-        sendPost(){
+        sendPost(){ // La methode sendPost nous permet de stocker dans la base de données les infos renseignés par l'utilisateur
             let form = new FormData();
             form.append("title", this.dataPost.title);
             form.append("content", this.dataPost.content);
             form.append("image", this.selectedFile);
             form.append("userId", localStorage.userId);
-            console.log("test");
-            //this.dataPostS = JSON.stringify(this.dataPost);
             axios.post("http://localhost:3000/api/posts/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
@@ -96,9 +87,8 @@ export default {
                 });
         },
     },
-    components: {
+    components: { // Ici on declare le compossant qu'on a recupéré
         "top-header": Header, 
-        
     },
 }
 </script>
