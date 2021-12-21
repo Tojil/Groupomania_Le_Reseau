@@ -3,15 +3,17 @@
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <v-card class="ma-12" raised>
             <!-- v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img -->
-            <v-list-item-avatar  class="d-flex justify-center mb-6">
+            <div class="d-flex justify-center mb-6">
+            <v-avatar>
                 <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
-            </v-list-item-avatar>
+            </v-avatar>
+            </div>
             <v-card-title class="my-3">
-                <h1>Mon profil</h1>
+                <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
             </v-card-title>
 
             <v-card-text class="ml-2 black--text">
-                <p>Prénom : {{ dataGet.firstName }}</p>
+                <h2>Prénom : {{ dataGet.firstName }}</h2>
                 <p>Nom : {{ dataGet.lastName }}</p>
                 <p>E-mail : {{ dataGet.email }}</p>
             </v-card-text>
@@ -161,7 +163,6 @@ export default {
         margin-top: 5%;
         margin-left: 10%;
     }
-
 // @media screen and (min-width: 200px) and (max-width: 640px) {
 //   #profil {
 //     padding-left: 5%;
