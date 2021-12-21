@@ -2,15 +2,15 @@
     <v-app class="signup ma-auto mt-6" v-if="form">
         <v-card outlined elevation="13" class="signup__card" raised>
             <v-card-text>
-                <v-form ref="form" v-model="valid">
+                <v-form ref="form" v-model="valid">  <!--  Formulaire pour saisir un nouveau membre si les regles sont respectés  -->
                     <v-text-field  v-model="dataSignup.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" autofocus required></v-text-field>
                     <v-text-field  v-model="dataSignup.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                    <v-text-field  v-model="dataSignup.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
+                    <v-text-field  v-model="dataSignup.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>  <!--  v-model Permet de lier la valeur d'un champ de saisie avec une variable reactive  -->
                     <v-text-field  v-model="dataSignup.password" :rules="passRules" error-count="4" type="password" label="Mot de passe" prepend-icon="mdi-lock-outline" color="black" required></v-text-field>
                 </v-form>
                 <template>
                   <div class="text-center">
-                    <v-dialog v-model="dialog" persistent width="500">
+                    <v-dialog v-model="dialog" persistent width="500">  <!--  Boîte de dialogue de confirmation de creation de compte  -->
                       <template v-slot:activator="{ on, attrs }">
                         <v-btn :disabled="!valid" class="success" v-bind="attrs" v-on="on">Confirmer</v-btn>
                       </template>
@@ -22,8 +22,7 @@
                         <v-divider></v-divider>
                         <v-card-actions>
                           <v-spacer></v-spacer>
-                          <v-btn @click="sendSignup()" class="success">Se connecter</v-btn>
-                          
+                          <v-btn @click="sendSignup()" class="success">Se connecter</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
                         </v-card-actions>
                       </v-card>
                     </v-dialog>
@@ -34,7 +33,6 @@
         </v-card>
     </v-app>
 </template>
-
 
 <script>
 import axios from "axios"

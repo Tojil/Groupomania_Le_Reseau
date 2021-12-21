@@ -14,7 +14,7 @@
             <v-list dense nav>
                 <v-list-item two-line class="px-0 ">
                     <v-list-item-avatar>
-                        <v-img src="../../assets/logo-blanc.png" contain></v-img>
+                        <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
                     </v-list-item-avatar>
                         
                     <v-list-item-content>

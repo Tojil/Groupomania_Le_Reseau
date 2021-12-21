@@ -57,9 +57,8 @@ export default {
             image: undefined
         }
     },
-    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
-    methods: { // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
-        onFileSelected(event) {
+    methods: {  // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
+        onFileSelected(event) {  // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
             let reader = new FileReader();
             reader.onload = (e) => {
                 this.selectedFile = e.target.result;

@@ -2,8 +2,11 @@
     <v-app id="profil" class="d-flex justify-center">
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <v-card class="ma-12" raised>
-            <v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img>
-            <v-card-title class="my-3 justify-center">
+            <!-- v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img -->
+            <v-list-item-avatar  class="d-flex justify-center mb-6">
+                <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
+            </v-list-item-avatar>
+            <v-card-title class="my-3">
                 <h1>Mon profil</h1>
             </v-card-title>
 
@@ -158,9 +161,10 @@ export default {
         margin-top: 5%;
         margin-left: 10%;
     }
-@media screen and (min-width: 200px) and (max-width: 640px) {
-  #profil {
-    padding-left: 30%;
-  }
-}
+
+// @media screen and (min-width: 200px) and (max-width: 640px) {
+//   #profil {
+//     padding-left: 5%;
+//   }
+// }
 </style>
