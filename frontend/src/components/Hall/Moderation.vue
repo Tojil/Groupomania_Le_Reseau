@@ -1,6 +1,6 @@
 <template>
     <v-app id="moderation" class="moderation">
-        <top-header/>
+        <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <div class="ml-12">
             <h1 class="ma-4">Modération</h1>
             <v-container>
@@ -58,7 +58,7 @@ import axios from "axios"
 
 export default {
     name: "Moderation",
-    data(){
+    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             allPosts: [],
             allComments: [],
@@ -69,16 +69,17 @@ export default {
     components: {
         "top-header": Header,
     },
+    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
-        clickPosts(){
+        clickPosts(){   // Cette methode sert à afficher tous les posts(publications)
             this.showPosts = true,
             this.showComments = false
         },
-        clickComments(){
+        clickComments(){   // Cette methose sert à afficher tous les commentaires
             this.showPosts = false,
             this.showComments = true
         },
-        deletePost(pId){
+        deletePost(pId){   //  Cette methose sert à supprimer un post(publication)
             axios.delete("http://localhost:3000/api/moderation/posts/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
@@ -90,7 +91,7 @@ export default {
                     console.log(error);    
                 })
         },
-        deleteComment(cId){
+        deleteComment(cId){   // Cette methose sert à supprimer un commentaire
             axios.delete("http://localhost:3000/api/moderation/comment/" + cId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);

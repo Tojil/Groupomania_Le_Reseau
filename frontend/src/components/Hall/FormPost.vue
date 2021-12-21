@@ -1,6 +1,6 @@
 <template> <!-- Le template permet d'utiliser des directives de Vue sans créer un élément html -->
     <v-app id="formPost">
-        <top-header/> <!-- Ici on récupére le composant Header.vue declaré plus bas dans les components-->
+        <top-header/> <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <h1 class="ml-12">Forum</h1>
         <v-card class="ma-3 ml-12">
             <v-card-title class="mb-3">
@@ -34,7 +34,7 @@ import Header from "./Header.vue"
 
 export default {
     name: "FormPost",
-    data(){ // Ici on stocke les données et les regles que nous allons utiliser dans des variables reactives
+    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             valid: true,
             titleRules: [
@@ -57,7 +57,7 @@ export default {
             image: undefined
         }
     },
-    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans votre application
+    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: { // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
         onFileSelected(event) {
             let reader = new FileReader();

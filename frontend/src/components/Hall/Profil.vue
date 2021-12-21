@@ -1,7 +1,6 @@
 <template>
     <v-app id="profil" class="d-flex justify-center">
-
-        <top-header/>
+        <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <v-card class="ma-12" raised>
             <v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img>
             <v-card-title class="my-3 justify-center">
@@ -67,7 +66,7 @@ import axios from "axios"
 
 export default {
     name: "Profil",
-    data() {
+    data() { // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             dialogDel: false,
             dialogUp: false,
@@ -98,6 +97,7 @@ export default {
             ],
         }
     },
+    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
         deleteUser() {
             

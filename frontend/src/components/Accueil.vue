@@ -1,6 +1,6 @@
 <template>
     <v-app id="accueil">
-        <top-header/>
+        <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <router-view></router-view>
 
         <v-carousel

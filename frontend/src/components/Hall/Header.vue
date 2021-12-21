@@ -63,7 +63,7 @@
 <script>
 export default {
     name : 'Header',
-    data(){
+    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return {
             modo: "",
             drawer: true,
@@ -74,6 +74,7 @@ export default {
             ],
         }
     },
+    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
         logout(){
             localStorage.userId = "";
