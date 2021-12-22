@@ -95,7 +95,7 @@ import Header from "./Header"
 import axios from "axios"
 export default {
     name: "forum",
-    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
+    data(){ // Ici on stock les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             userId: "",
             admin: "",

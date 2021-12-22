@@ -8,7 +8,7 @@
                 <v-btn class="ma-3" color="black white--text" @click="clickComments">Voir les commentaires</v-btn>
                 <div v-if="showPosts">
                     <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
-                        <v-img height="250" :src="post.media" class="forum__post__media"></v-img>
+                        <img :src="`http://localhost:3000/${post.media}`">
                         <v-card-title>
                             <h2 class="forum__post__title">{{ post.title }}</h2>
                         </v-card-title>
@@ -63,7 +63,8 @@ export default {
             allPosts: [],
             allComments: [],
             showPosts: true,
-            showComments: false
+            showComments: false,
+            media: ""
         }
     },
     components: {
@@ -103,7 +104,7 @@ export default {
                 })
         }
     },
-    mounted(){
+    mounted(){  // Cette methode se lance au moment du chargement du composant
         axios.get("http://localhost:3000/api/moderation/posts", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {
                 let posts = JSON.parse(response.data);
