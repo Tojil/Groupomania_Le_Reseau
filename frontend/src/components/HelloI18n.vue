@@ -1,4 +1,4 @@
-<template>
+<!--template>
   <p>{{ $t('hello') }}</p>
 </template>
 
@@ -14,4 +14,4 @@ export default {
     "hello": "Hello i18n in SFC!"
   }
 }
-</i18n>
+</i18n-->
