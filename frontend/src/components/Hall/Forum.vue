@@ -90,6 +90,7 @@
 </template>
 
 <script>
+// Ici on import les composants dont on a besoin
 import Header from "./Header"
 import axios from "axios"
 export default {
@@ -279,7 +280,7 @@ export default {
     components: {  // Ici on declare le compossant qu'on a recupéré
         "top-header": Header, 
     },
-    mounted(){  // 
+    mounted(){  // Cette methode se lance au moment du chargement du composant
         this.userId = localStorage.userId;
         axios.get("http://localhost:3000/api/posts", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {

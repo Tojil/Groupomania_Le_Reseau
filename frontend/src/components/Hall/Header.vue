@@ -81,11 +81,11 @@ export default {
             localStorage.moderation = "";
              this.$router.push('/');
         },
-        moderation(){
+        moderation(){  // Cette methode ouvre la page moderateur
             this.$router.push('/hall/moderation')
         }
     },
-    mounted(){
+    mounted(){  // Cette methode se lance au moment du chargement du composant
         this.modo = localStorage.moderation;
     },
 }

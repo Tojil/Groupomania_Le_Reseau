@@ -1,8 +1,8 @@
-<template>
+<!--template>
 
 </template>
 
-<script>
+ <script>
   export default {
     name: 'HelloWorld',
 
@@ -14,4 +14,4 @@
 
 <style scoped>
 
-</style>
+</style-->

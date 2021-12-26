@@ -39,6 +39,7 @@ import axios from "axios"
 
 export default {
     name : "Signup",
+    // Ici on stock les données et les regles que nous allons utiliser en tant que variables reactives
     data: () => ({
 
         // return{
@@ -74,8 +75,8 @@ export default {
             dialog: false
         //}
     }),
-    methods: {
-        sendSignup(){
+    methods: {  // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
+        sendSignup(){  // Cette methode envoie l'enregistrement du nouvel utilisateur dans la base de donnés
             this.dataSignupS = JSON.stringify(this.dataSignup)
             axios.post('http://localhost:3000/api/auth/signup', this.dataSignupS, {headers: {'Content-Type': 'application/json'}})
             .then(response => {

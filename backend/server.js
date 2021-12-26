@@ -17,7 +17,7 @@ const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 // la fonction errorHandler recherche les différentes erreurs et les gère de manière appropriée.
-// et elle va les loguer Elle est ensuite enregistrée dans le serveur 
+// et elle va les loguer Elle est ensuite enregistrer dans le serveur 
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;

@@ -2,7 +2,8 @@
     <v-app id="accueil">
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <router-view></router-view>
-
+        
+        <!-- Créatiion d'un carousel -->
         <v-carousel
             id="carousel"
             cycle
@@ -20,21 +21,17 @@
     </v-app>
 </template>
 <script>
+
+// Ici on import les composants dont on a besoin
 import Header from "./Hall/Header"
 
 export default {
     name: "Accueil",
-    data(){
-        return{
+    data(){  // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
+        return{ 
             items: [
             {
-                src: require("../assets/images/luneChantier.jpg"),
-            },
-            {
                 src: require("../assets/images/chateauV.jpg"),
-            },
-            {
-                src: require("../assets/images/cartoucherie.jpg")
             },
             {
                 src: require("../assets/images/laScene.jpg"),
@@ -43,13 +40,19 @@ export default {
                 src: require("../assets/images/arretTrain.jpg"),
             },
             {
+                src: require("../assets/images/cartoucherie.jpg"),
+            },
+            {
+                src: require("../assets/images/luneChantier.jpg"),
+            },
+            {
                 src: require("../assets/images/chantier.jpg"),
             },
             ]
             
         }
     },
-    components: {
+    components: {  // Ici on declare le compossant qu'on a recupéré
         "top-header": Header,
     },
 }

@@ -53,6 +53,7 @@
 
 <script>
 
+// Ici on import les composants dont on a besoin
 import Header from "./Header"
 import axios from "axios"
 import image from './FormPost'

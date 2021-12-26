@@ -66,6 +66,7 @@
 
 <script>
 
+// Ici on import les composants dont on a besoin
 import Header from "./Header.vue"
 import axios from "axios"
 
@@ -134,7 +135,7 @@ export default {
             })
         }
     },
-    mounted() { 
+    mounted() {  // Cette methode se lance au moment du chargement du composant
         axios.get("http://localhost:3000/api/auth/", {headers: {Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {
                 let profil = JSON.parse(response.data);
@@ -166,9 +167,5 @@ export default {
     h2{
         margin-bottom: 15px;
     }
-// @media screen and (min-width: 200px) and (max-width: 640px) {
-//   #profil {
-//     padding-left: 5%;
-//   }
-// }
+
 </style>
