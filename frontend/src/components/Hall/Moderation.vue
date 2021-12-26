@@ -8,7 +8,7 @@
                 <v-btn class="ma-3" color="black white--text" @click="clickComments">Voir les commentaires</v-btn>
                 <div v-if="showPosts">
                     <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
-                        <img :src="`http://localhost:3000/${post.media}`">
+                        <v-img :src="`http://localhost:3000/images/${post.media}`"></v-img>
                         <v-card-title>
                             <h2 class="forum__post__title">{{ post.title }}</h2>
                         </v-card-title>
@@ -55,6 +55,7 @@
 
 import Header from "./Header"
 import axios from "axios"
+import image from './FormPost'
 
 export default {
     name: "Moderation",
@@ -64,14 +65,14 @@ export default {
             allComments: [],
             showPosts: true,
             showComments: false,
-            media: ""
+            image: image
         }
     },
     components: {
-        "top-header": Header,
+        "top-header": Header
     },
-    // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
-    methods: {
+    
+    methods: {   // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
         clickPosts(){   // Cette methode sert à afficher tous les posts(publications)
             this.showPosts = true,
             this.showComments = false

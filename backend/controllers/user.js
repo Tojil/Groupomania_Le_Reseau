@@ -1,12 +1,12 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');  //bcrpyt permet un cryptage sécurisé
+const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
 const UserModels = require ('../Models/UserModels.js')
 
 let userModels = new UserModels();
 
-
+// Enregistrement d'un nouvel usager
 exports.signup = (req, res, next) => {
     let email = req.body.email;
 	let password = req.body.password;
@@ -26,7 +26,7 @@ exports.signup = (req, res, next) => {
         })
         .catch(error => res.status(500).json(error)) 
 };
-
+// Login d'un usager
 exports.login = (req, res, next) => {
     let email = req.body.email;
     let password = req.body.password;
@@ -39,7 +39,7 @@ exports.login = (req, res, next) => {
             res.status(400).json(error)
         })
 }
-
+// Permet de voir le profil
 exports.seeMyProfile = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -54,6 +54,7 @@ exports.seeMyProfile = (req, res, next) => {
             res.status(400).json(error)
         })
 }   
+// Met à jour les informations de l'utilisateur
 exports.updateUser = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -70,7 +71,7 @@ exports.updateUser = (req, res, next) => {
             res.status(400).json(error)
         })
 }
- 
+ //  Supprime un utilisateur
 exports.deleteUser = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');

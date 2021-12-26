@@ -10,7 +10,7 @@
             <v-card-text>
                 <v-form ref="form" class="ma-3" v-model="valid" >
                     <div>
-                    <img :src="selectedFile" alt=""> <!-- Cest l'image que nous avons récupéré -->
+                    <img :src="imagePreview" alt=""> <!-- Cest l'image que nous avons récupéré -->
                     </div>
                     <v-text-field v-model="dataPost.title" color="black" :rules="titleRules" :counter="50" label="Titre" autofocus required></v-text-field> <!-- Champ de saisie pour le titre si les regles sont respectés -->
                     <v-textarea v-model="dataPost.content" color="black" :rules="contentRules" label="Message" required></v-textarea> <!-- Champ de saisie pour le commentaire si les regles sont respectés -->
@@ -34,7 +34,7 @@ import Header from "./Header.vue"
 
 export default {
     name: "FormPost",
-    data(){ // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
+    data(){ // Ici on stock les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             valid: true,
             titleRules: [
@@ -53,7 +53,7 @@ export default {
             dataPostS: "",
             msg: false,
             message: "",
-            selectedFile: null,
+            imagePreview: null,
             image: undefined
         }
     },
@@ -61,7 +61,7 @@ export default {
         onFileSelected(event) {  // La methode onFileSelected nous permet d'aller choisir une image dans nos fichiers
             let reader = new FileReader();
             reader.onload = (e) => {
-                this.selectedFile = e.target.result;
+                this.imagePreview = e.target.result;
             }
             reader.readAsDataURL(event.target.files[0]);
             this.image = event.target.files[0];

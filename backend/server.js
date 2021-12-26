@@ -1,7 +1,8 @@
-const http = require('http');
+const http = require('http');  // Ici, nous importons le package HTTP natif de Node et l'utiliser pour créer un serveur
 const app = require('./app');
 
-const normalizePort = val => {
+// la fonction normalizePort renvoie un port valide, qu'il soit fourni sous la forme d'un numéro ou d'une chaîne
+const normalizePort = val => {  
   const port = parseInt(val, 10);
 
   if (isNaN(port)) {
@@ -15,6 +16,8 @@ const normalizePort = val => {
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+// la fonction errorHandler recherche les différentes erreurs et les gère de manière appropriée.
+// et elle va les loguer Elle est ensuite enregistrée dans le serveur 
 const errorHandler = error => {
   if (error.syscall !== 'listen') {
     throw error;
@@ -37,6 +40,8 @@ const errorHandler = error => {
 
 const server = http.createServer(app);
 
+// le server On Error c'est un evenement qui est declanché quand il y a une error dans le server et 
+// et cette evenement dirige vers errorHandler 
 server.on('error', errorHandler);
 server.on('listening', () => {
   const address = server.address();
@@ -44,4 +49,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+// Ecouteur d'évènement, consignant le port nommé sur lequel le serveur s'exécute dans la console. Ecoute et attend les requêtes envoyées
 server.listen(port);

@@ -1,10 +1,11 @@
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 const ModeraModels = require ('../Models/ModeraModels.js');
 
 let moderaModels = new ModeraModels();
 
+// Permet au moderateur de faire appel à tous les posts(publications)
 exports.getAllPosts = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -18,6 +19,7 @@ exports.getAllPosts = (req, res, next) => {
         res.status(400).json({error: 'Requête non authorisée'})
     }
 }
+// Permet au moderateur de supprimer un post(publication)
 exports.deletePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -34,6 +36,7 @@ exports.deletePost = (req, res, next) => {
         res.status(400).json({error: 'Requête non authorisée'})
     }
 }
+// Permet au moderateur d'appeller tous les commentaires
 exports.getAllComments = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -47,6 +50,7 @@ exports.getAllComments = (req, res, next) => {
         res.status(400).json({error: 'Requête non authorisée'})
     }
 }
+// Permet au moderateur de supprimer un commentaire
 exports.deleteComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');

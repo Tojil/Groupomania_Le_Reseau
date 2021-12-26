@@ -1,17 +1,18 @@
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 const PostsModels = require ('../Models/PostsModels.js')
 
 let postsModels = new PostsModels();
 
-
+// Appel tous les posts(publications)
 exports.getAllPosts = (req, res, next) => {
     postsModels.getAllPosts()
         .then((response) => {
             res.status(200).json(JSON.stringify(response));
         });
 }
+// Enregistre une nouvelle image
 exports.imagePost = (req, res, next) => {
     const postObject = JSON.parse(req.body.PostsModels);
     delete postObject._id;
@@ -24,6 +25,7 @@ exports.imagePost = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+// Création d'un post (une publication)
 exports.createPost = (req, res, next) => {
     console.log(req.file)
     let title = req.body.title;
@@ -36,6 +38,7 @@ exports.createPost = (req, res, next) => {
             res.status(201).json(JSON.stringify(response));
         })
 }
+// Met a jour un post(publication)
 exports.updatePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -54,6 +57,7 @@ exports.updatePost = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
+//  Supprime un post(publication)
 exports.deletePost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -70,8 +74,7 @@ exports.deletePost = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
-
-
+//  Appel les comentaires
 exports.getComments = (req, res, next) => {
     let postId = req.params.id;
     let sqlInserts = [postId];
@@ -80,6 +83,7 @@ exports.getComments = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         })
 }
+//  Creation d'un commentaire
 exports.createComment = (req, res, next) => { 
     let postId = req.params.id;
     let userId = req.body.userId;
@@ -90,7 +94,7 @@ exports.createComment = (req, res, next) => {
             res.status(201).json(JSON.stringify(response));
         })
 }
-
+// Met à jour un commentaire
 exports.updateComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -108,6 +112,7 @@ exports.updateComment = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
+//  Supprime un commentaire
 exports.deleteComment = (req, res, next) => {
     let commentId = req.params.id;
     let sqlInserts = [commentId];
@@ -116,6 +121,7 @@ exports.deleteComment = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         })
 }
+//  Supprime un commentaire
 exports.deleteComment = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
@@ -132,14 +138,14 @@ exports.deleteComment = (req, res, next) => {
             res.status(400).json(JSON.stringify(error));
         })
 }
-
-
+//  Appel tous les likes
 exports.getAllLikes = (req, res, next) =>{
      postsModels.getAllLikes()
         .then((response) =>{
             res.status(200).json(JSON.stringify(response));
         })
 }
+// Crée un like
 exports.postLike = (req, res, next) => {
     let userId = req.body.userId;
     let nbLikes = req.body.nbLikes;

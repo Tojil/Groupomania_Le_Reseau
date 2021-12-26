@@ -1,12 +1,12 @@
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');  //bcrpyt permet un cryptage sécurisé
+const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 
 class UserModels {
     constructor() {
     }
-    signup(sqlInserts){
+    signup(sqlInserts){  // Enregistre un nouvel utilisateur dans la base de données
         let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve, reject) =>{
@@ -16,7 +16,7 @@ class UserModels {
             })
         })
     }
-    login(sqlInserts, password){
+    login(sqlInserts, password){   //  Vérifie que l'utilisateur un bien un compte d'enregistré
         let sql = 'SELECT * FROM users WHERE email = ?';
         sql = mysql.format(sql, sqlInserts);
         
@@ -46,7 +46,7 @@ class UserModels {
         
         })
     }
-    seeMyProfile(sqlInserts){
+    seeMyProfile(sqlInserts){  // Permet d'afficher le profil de l'utilisateur avec les données depuis la base de données
         let sql = 'SELECT firstName, lastName, email FROM users WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
@@ -58,7 +58,7 @@ class UserModels {
         })
     
     }
-    updateUser(sqlInserts){
+    updateUser(sqlInserts){ //  Met à jour les modifications de l'utilisateur, dans la base de données
         let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
@@ -69,7 +69,7 @@ class UserModels {
 
         })
     }
-    deleteUser(sqlInserts){
+    deleteUser(sqlInserts){  // Supprime l'utilisteur de la base de données
         let sql = 'DELETE FROM users WHERE id = ?'; 
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{

@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express');  // Ici, nous importons le package express pour creer des applications express
 const router = express.Router();
 
 const auth = require('../middleware/auth');
@@ -7,20 +7,20 @@ const multer = require('../middleware/multer-config');
 const postsCtrl = require('../controllers/posts');
 
 try{
-    router.get('/', auth, postsCtrl.getAllPosts);
-    router.post('/', auth, multer, postsCtrl.createPost);
-    router.post('/', auth, multer, postsCtrl.imagePost);
-    router.put('/:id', auth, multer, postsCtrl.updatePost);
-    router.delete('/:id', auth, postsCtrl.deletePost); 
+    router.get('/', auth, postsCtrl.getAllPosts);  // Récupére tous les posts(publications)
+    router.post('/', auth, multer, postsCtrl.createPost);  // Enregistre le post(publication) créé
+    router.post('/', auth, multer, postsCtrl.imagePost);  //  Envoie l'image 
+    router.put('/:id', auth, multer, postsCtrl.updatePost);  // Met à jour le post(publication) modifié
+    router.delete('/:id', auth, postsCtrl.deletePost); // Supprime un post(publication)
 
     
-    router.get('/likes', auth, postsCtrl.getAllLikes);
-    router.post('/:id/like', auth, postsCtrl.postLike);
+    router.get('/likes', auth, postsCtrl.getAllLikes);  //  Récupére tous les likes
+    router.post('/:id/like', auth, postsCtrl.postLike); // Envoie un like
  
-    router.get('/:id/comments', auth, postsCtrl.getComments);
-    router.post('/:id/comments', auth, postsCtrl.createComment);
-    router.put('/comments/:id', auth, postsCtrl.updateComment);
-    router.delete('/comments/:id', auth, postsCtrl.deleteComment); 
+    router.get('/:id/comments', auth, postsCtrl.getComments); // Récupére les commentaires
+    router.post('/:id/comments', auth, postsCtrl.createComment);  // Enregistre un nouveau commentaire
+    router.put('/comments/:id', auth, postsCtrl.updateComment);  //  Met à jour la modification d'un commentaire
+    router.delete('/comments/:id', auth, postsCtrl.deleteComment);  //   Supprime un commentaire
 
 }catch (error){
     console.log(error);

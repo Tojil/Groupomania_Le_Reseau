@@ -5,7 +5,7 @@ const mysql = require('mysql');
 class PostsModels {
     constructor() {
     }
-    getAllPosts(){
+    getAllPosts(){  //  Récupére tous les posts(publication) depuis la base de données
         let sql = "SELECT posts.id, posts.userId, posts.title, posts.content, DATE_FORMAT(DATE(posts.date), '%d/%m/%Y') AS date, TIME(posts.date) AS time, posts.likes, posts.media, users.lastName, users.firstName FROM posts JOIN users ON posts.userId = users.id ORDER BY posts.date DESC";
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields) {
@@ -14,7 +14,7 @@ class PostsModels {
             });
         })
     }
-    createPost(sqlInserts){
+    createPost(sqlInserts){  // Crée un nouveau post(publication) dans la base de données
         let sql = 'INSERT INTO posts (userId, title, content, date, likes, media) VALUES(?, ?, ?, NOW(), 0, ?)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
@@ -24,7 +24,7 @@ class PostsModels {
             })       
         })
     }
-    updatePost(sqlInserts1, sqlInserts2){
+    updatePost(sqlInserts1, sqlInserts2){  //  Met à jour un post(publication) modifié dans la base de données
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
         return new Promise((resolve) =>{
@@ -43,7 +43,7 @@ class PostsModels {
             })
         });
     }
-    deletePost(sqlInserts1, sqlInserts2){
+    deletePost(sqlInserts1, sqlInserts2){  //  Supprime un post(publication) de la base de données
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
         return new Promise((resolve, reject) =>{
@@ -63,9 +63,7 @@ class PostsModels {
             });
         })
     }
-
-
-    getComments(sqlInserts){
+    getComments(sqlInserts){  //  Récupére tous les commentaires depuis la base de données
         let sql = "SELECT comments.comContent, DATE_FORMAT(comments.date, '%d/%m/%Y à %H:%i:%s') AS date, comments.id, comments.userId, users.firstName, users.lastName FROM comments JOIN users on comments.userId = users.id WHERE postId = ? ORDER BY date";
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
@@ -76,7 +74,7 @@ class PostsModels {
         
         })
     }
-    createComment(sqlInserts){
+    createComment(sqlInserts){  //  Crée un nouveau commentaire dans la base de données
         let sql = 'INSERT INTO comments VALUES(NULL, ?, ?, NOW(), ?)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve) =>{
@@ -86,7 +84,7 @@ class PostsModels {
             })
         })
     }
-    updateComment(sqlInserts1, sqlInserts2){
+    updateComment(sqlInserts1, sqlInserts2){  //  Met à jour un commentaire modifié, dans la bse de données
         let sql1 = 'SELECT * FROM comments where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
         return new Promise((resolve) =>{
@@ -105,7 +103,7 @@ class PostsModels {
             })
         });
     }
-    deleteComment(sqlInserts1, sqlInserts2){
+    deleteComment(sqlInserts1, sqlInserts2){  //  Suprime un commentaire de la base de données
         let sql1 = 'SELECT * FROM comments where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
         return new Promise((resolve, reject) =>{
@@ -127,7 +125,7 @@ class PostsModels {
     }
 
     
-    getAllLikes(){
+    getAllLikes(){  //  Récupére tous les likes depuis la base de données
         let sql = 'SELECT * FROM likes';
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields) {
@@ -136,7 +134,7 @@ class PostsModels {
             });
         })
     }
-    postLike(sqlInserts1, sqlInserts2, liked){
+    postLike(sqlInserts1, sqlInserts2, liked){  //  Ajoute ou supprime un like dans la base de données
         let sql1 = 'INSERT INTO likes VALUES (NULL, ?, ?)'; 
         sql1 = mysql.format(sql1, sqlInserts1);
         let sql2 = 'UPDATE posts SET likes = ? WHERE id = ?';
