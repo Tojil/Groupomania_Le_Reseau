@@ -4,9 +4,12 @@
         <v-card class="ma-12" raised>
             <!-- v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img -->
             <div class="d-flex justify-center mb-6">
-            <v-avatar>
+                <form id="profile-form" class="p-5" @submit.prevent="submit">
+                    <avatar-input v-model="form.avatar"></avatar-input>
+                </form>
+            <!--v-avatar>
                 <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
-            </v-avatar>
+            </v-avatar-->
             </div>
             <v-card-title class="my-3">
                 <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
@@ -69,6 +72,7 @@
 // Ici on import les composants dont on a besoin
 import Header from "./Header.vue"
 import axios from "axios"
+import AvatarInput from "./AvatarInput.vue"
 
 export default {
     name: "Profil",
@@ -101,10 +105,16 @@ export default {
                 v => !!v || 'Renseignez votre e-mail',
                 v => /.+@.+\..+/.test(v) || "Votre e-mail n'est pas valide",
             ],
+            form: {
+                avatar: null
+            }
         }
     },
     // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
+        submit() {
+            console.log('submitting', this.form)
+        },
         deleteUser() {
             
             axios.delete("http://localhost:3000/api/auth/", {headers: {Authorization: 'Bearer ' + localStorage.token}})
@@ -153,7 +163,7 @@ export default {
     
     components: {
         "top-header": Header,
-
+        AvatarInput
     }
 }
 </script>
