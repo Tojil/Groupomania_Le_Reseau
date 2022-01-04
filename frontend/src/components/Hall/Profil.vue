@@ -5,7 +5,7 @@
             <!-- v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img -->
             <div class="d-flex justify-center mb-6">
                 <form id="profile-form" class="p-5" @submit.prevent="submit">
-                    <avatar-input v-model="form.avatar"></avatar-input>
+                    <avatar-input v-model="form.avatar" default-src=""></avatar-input>
                 </form>
             <!--v-avatar>
                 <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
