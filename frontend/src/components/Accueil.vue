@@ -37,16 +37,13 @@ export default {
                 src: require("../assets/images/laScene.jpg"),
             },
             {
-                src: require("../assets/images/arretTrain.jpg"),
-            },
-            {
-                src: require("../assets/images/cartoucherie.jpg"),
-            },
-            {
                 src: require("../assets/images/luneChantier.jpg"),
             },
             {
                 src: require("../assets/images/chantier.jpg"),
+            },
+            {
+                src: require("../assets/images/arretTrain.jpg"),
             },
             ]
             
