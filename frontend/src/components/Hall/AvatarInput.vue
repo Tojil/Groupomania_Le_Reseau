@@ -2,22 +2,23 @@
     <div>
         <input type="file" accept="image/*" class="hidden" ref="file" @change="change">
         <div class="profil-photo">
-            <v-avatar size="150" color="indigo">
+            <v-avatar size="150" color="grey">
                 <img :src="src" alt="" class="rounded-full object-cover">
             </v-avatar>
-                <button @click="browse()" class="camera">
-                    <v-icon color="white">mdi-camera</v-icon>
-                </button>
-                <button v-if="file" @click="remove()" class="cameraX">
-                    <v-icon color="white">X</v-icon>
-                </button>
+            <button @click="browse()" class="camera">
+                <v-icon color="green">mdi-camera</v-icon>
+            </button>
+            <button v-if="file" @click="remove()" class="cameraX">
+                <v-icon color="red">X</v-icon>
+            </button>
         </div>
-    
+
     </div>
 </template>
 
 
 <script>
+import axios from "axios"
 
 export default {
 
@@ -30,8 +31,9 @@ export default {
     data() {
         return {
             src: this.defaultSrc,
-            file: null
-            
+            file: null,
+            imagePreviewProfil: null,
+            imageProfil: undefined
         }
     },
 
@@ -54,6 +56,11 @@ export default {
             reader.onload = (e) => {
                 this.src = e.target.result;
             }
+        },
+        sendProfilPost() {
+            let form = new FormData();
+            form.append("imageProfil", this.imageProfil);
+            axios.post("http://localhost:3000/api/users/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
         }
     }
 }
@@ -68,12 +75,12 @@ export default {
 }
 .camera {
     position: absolute;
-    top: 65px;
-    left: 40px;
+    bottom: -10px;
+    left: 0px;
 }
 .cameraX {
     position: absolute;
-    top: 65px;
-    right: 40px;
+    bottom: -10px;
+    right: 0px;
 }
 </style>

@@ -277,7 +277,7 @@ export default {
                 })
         },
     },
-    components: {  // Ici on declare le compossant qu'on a recupéré
+    components: {  // Ici on declare le composant qu'on a recupéré
         "top-header": Header, 
     },
     mounted(){  // Cette methode se lance au moment du chargement du composant
