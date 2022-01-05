@@ -2,14 +2,10 @@
     <v-app id="profil" class="d-flex justify-center">
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <v-card class="ma-12" raised>
-            <!-- v-img class="logo" src="../../assets/icon-above-font.svg" width="100px" contain></v-img -->
             <div class="d-flex justify-center mb-6">
                 <form id="profile-form" class="p-5" @submit.prevent="submit">
                     <avatar-input v-model="form.avatar" default-src=""></avatar-input>
                 </form>
-            <!--v-avatar>
-                <v-img src="../../assets/images/Sergio_8.jpg" contain></v-img>
-            </v-avatar-->
             </div>
             <v-card-title class="my-3">
                 <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
