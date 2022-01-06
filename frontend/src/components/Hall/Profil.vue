@@ -4,41 +4,32 @@
         <v-card class="ma-12" raised>
             <div class="d-flex justify-center mb-6">
                 <form id="profile-form" class="p-5" @submit.prevent="submit">
-                    <avatar-input v-model="form.avatar" default-src=""></avatar-input>
+                    <avatar-input ref="avatarInput" v-model="form.avatar" default-src=""></avatar-input>
                 </form>
             </div>
+            <div class="pencil">
+                <v-icon @click="switchMode" color="orange">mdi-pencil</v-icon>
+            </div>
+            
             <v-card-title class="my-3">
                 <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
             </v-card-title>
-
-            <v-card-text class="ml-2 black--text">
+            
+            <v-card-text v-if="!editMode" class="ml-2 black--text">
                 <h2>Prénom : {{ dataGet.firstName }}</h2>
                 <h2>Nom : {{ dataGet.lastName }}</h2>
                 <h3>E-mail : {{ dataGet.email }}</h3>
             </v-card-text>
-
+            <v-form v-else ref="form" v-model="valid">
+                <v-text-field v-model="dataUp.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
+                <v-text-field  v-model="dataUp.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
+                <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
+            </v-form>
             <v-card-actions class="d-flex justify-space-between">
-                <v-btn @click.stop="dialogUp=true" title="modifier mes informations">Modifier</v-btn>
+                <v-btn @click.stop="updateUser" title="modifier mes informations">Valider</v-btn>
                 <v-btn @click.stop="dialogDel=true" title="supprimer mon profil" color="red">Supprimer</v-btn>
             </v-card-actions>
         </v-card>
-
-        <v-dialog persistent v-model="dialogUp" max-width="600px">
-            <v-card>
-                <v-card-title>Modifier mon profil</v-card-title>
-                <v-card-text>
-                    <v-form ref="form" v-model="valid">
-                        <v-text-field v-model="dataUp.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                        <v-text-field  v-model="dataUp.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                        <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
-                    </v-form>
-                </v-card-text>
-                <v-card-actions>
-                    <v-btn text @click="dialogUp=false">Annuler</v-btn>
-                    <v-btn text :disabled="!valid" @click="updateUser">Valider</v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-dialog>
 
         <v-dialog v-model="dialogDel" max-width="350px">
             <v-card>
@@ -77,6 +68,7 @@ export default {
             dialogDel: false,
             dialogUp: false,
             msg: "",
+            editMode: false,
             dataGet: { 
                 firstName: "",
                 lastName: "",
@@ -108,6 +100,9 @@ export default {
     },
     // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
+        switchMode() {
+            this.editMode = !this.editMode;
+        },
         submit() {
             console.log('submitting', this.form)
         },
@@ -128,7 +123,12 @@ export default {
         },
         updateUser() {
             this.dataUpS = JSON.stringify(this.dataUp);
-            axios.put("http://localhost:3000/api/auth/", this.dataUpS, {headers: {'Content-Type': 'application/json', Authorization: 'Bearer ' + localStorage.token}})
+            let form = new FormData();
+            form.append("imageProfil", this.$refs['avatarInput'].file);
+            form.append('firstName', this.dataUp.firstName);
+            form.append("lastName", this.dataUp.lastName);
+            form.append("email", this.dataUp.email);
+            axios.put("http://localhost:3000/api/auth/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {
                 let rep = JSON.parse(response.data);
                 console.log(rep);
@@ -172,6 +172,11 @@ export default {
     }
     h2{
         margin-bottom: 15px;
+    }
+    .pencil {
+        position: absolute;
+        top: 20px;
+        right: 20px;
     }
 
 </style>

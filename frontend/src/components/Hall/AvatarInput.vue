@@ -3,12 +3,12 @@
         <input type="file" accept="image/*" class="hidden" ref="file" @change="change">
         <div class="profil-photo">
             <v-avatar size="150" color="grey">
-                <img :src="src" alt="" class="rounded-full object-cover">
+                <img :src="src" alt="" class="rounded-full">
             </v-avatar>
             <button @click="browse()" class="camera">
                 <v-icon color="green">mdi-camera</v-icon>
             </button>
-            <button v-if="file" @click="remove()" class="cameraX">
+            <button @click="remove()" class="cameraX">
                 <v-icon color="red">X</v-icon>
             </button>
         </div>
@@ -18,7 +18,6 @@
 
 
 <script>
-import axios from "axios"
 
 export default {
 
@@ -31,9 +30,7 @@ export default {
     data() {
         return {
             src: this.defaultSrc,
-            file: null,
-            imagePreviewProfil: null,
-            imageProfil: undefined
+            file: null
         }
     },
 
@@ -56,11 +53,6 @@ export default {
             reader.onload = (e) => {
                 this.src = e.target.result;
             }
-        },
-        sendProfilPost() {
-            let form = new FormData();
-            form.append("imageProfil", this.imageProfil);
-            axios.post("http://localhost:3000/api/users/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
         }
     }
 }
