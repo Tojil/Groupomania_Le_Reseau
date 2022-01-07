@@ -56,13 +56,13 @@ export default {
 </script>
 <style lang="scss">
     #accueil{
-        background: no-repeat center top/20% url("../assets/icon-above-font.png");
+        background: no-repeat center top/15% url("../assets/icon-above-font.png");
         display: flex;
         flex-direction: row;
     }
     #carousel{
         width: 60%;
-        margin-top: 17%;
+        margin-top: 13%;
         margin-left: 20%;
     }
     .header{

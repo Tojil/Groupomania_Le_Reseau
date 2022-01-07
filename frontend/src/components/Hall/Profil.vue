@@ -1,36 +1,35 @@
 <template>
-    <v-app id="profil" class="d-flex justify-center">
+    <v-app class="d-flex justify-space-between">
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
         <v-card class="ma-12" raised>
-            <div class="d-flex justify-center mb-6">
-                <form id="profile-form" class="p-5" @submit.prevent="submit">
-                    <avatar-input ref="avatarInput" v-model="form.avatar" default-src=""></avatar-input>
-                </form>
-            </div>
-            <div class="pencil">
-                <v-icon @click="switchMode" color="orange">mdi-pencil</v-icon>
-            </div>
-            
-            <v-card-title class="my-3">
-                <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
-            </v-card-title>
-            
-            <v-card-text v-if="!editMode" class="ml-2 black--text">
-                <h2>Prénom : {{ dataGet.firstName }}</h2>
-                <h2>Nom : {{ dataGet.lastName }}</h2>
-                <h3>E-mail : {{ dataGet.email }}</h3>
-            </v-card-text>
-            <v-form v-else ref="form" v-model="valid">
-                <v-text-field v-model="dataUp.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                <v-text-field  v-model="dataUp.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
-                <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
-            </v-form>
-            <v-card-actions class="d-flex justify-space-between">
-                <v-btn @click.stop="updateUser" title="modifier mes informations">Valider</v-btn>
-                <v-btn @click.stop="dialogDel=true" title="supprimer mon profil" color="red">Supprimer</v-btn>
-            </v-card-actions>
+                <div class="d-flex justify-center mb-6">
+                    <form id="profile-form" class="p-5" @submit.prevent="submit">
+                        <avatar-input ref="avatarInput" v-model="form.avatar" default-src=""></avatar-input>
+                    </form>
+                </div>
+                <div class="pencil">
+                    <v-icon @click="switchMode" color="orange">mdi-pencil</v-icon>
+                </div>
+                
+                <v-card-title class="my-3">
+                    <h1>{{ dataGet.firstName }} {{ dataGet.lastName }}</h1>
+                </v-card-title>
+                
+                <v-card-text v-if="!editMode" class="ml-2 black--text">
+                    <h2>Prénom : {{ dataGet.firstName }}</h2>
+                    <h2>Nom : {{ dataGet.lastName }}</h2>
+                    <h3>E-mail : {{ dataGet.email }}</h3>
+                </v-card-text>
+                <v-form v-else ref="form" v-model="valid">
+                    <v-text-field v-model="dataUp.firstName" :rules="firstNameRules" label="Prénom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
+                    <v-text-field  v-model="dataUp.lastName" :rules="lastNameRules" label="Nom" prepend-icon="mdi-account-outline" color="black" required></v-text-field>
+                    <v-text-field v-model="dataUp.email" :rules="emailRules" label="e-mail" prepend-icon="mdi-at" color="black" required></v-text-field>
+                </v-form>
+                <v-card-actions class="d-flex justify-space-between">
+                    <v-btn @click.stop="updateUser" title="modifier mes informations">Valider</v-btn>
+                    <v-btn @click.stop="dialogDel=true" title="supprimer mon profil" color="red">Supprimer</v-btn>
+                </v-card-actions>
         </v-card>
-
         <v-dialog v-model="dialogDel" max-width="350px">
             <v-card>
                 <v-card-title>

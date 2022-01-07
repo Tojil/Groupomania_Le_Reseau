@@ -5,7 +5,7 @@
             color="black"
             expand-on-hover
             mini-variant
-            mini-variant-width=45
+            mini-variant-width=40
             bottom
             permanent
             absolute

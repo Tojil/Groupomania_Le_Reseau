@@ -7,7 +7,7 @@
             <v-container >
                 <v-btn class="ma-3" color="black white--text" @click="afficheForm">Créer un post</v-btn>
                 <v-card class="forum__post ma-3 mt-6" v-for="(post, index) in allPosts" v-bind:key="index">
-                    <v-img :src="`http://localhost:3000/${post.media}`"></v-img>
+                    <v-img class="imagePost" :src="`http://localhost:3000/${post.media}`"></v-img>
                     <div class="d-flex justify-space-between">
                         <v-card-title>
                             <h2 class="forum__post__title ml-0">{{ post.title }}</h2>
