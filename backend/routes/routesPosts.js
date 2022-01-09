@@ -9,7 +9,6 @@ const postsCtrl = require('../controllers/posts');
 try{
     router.get('/', auth, postsCtrl.getAllPosts);  // Récupére tous les posts(publications)
     router.post('/', auth, multer, postsCtrl.createPost);  // Enregistre le post(publication) créé
-    router.post('/', auth, multer, postsCtrl.imagePost);  //  Envoie l'image 
     router.put('/:id', auth, multer, postsCtrl.updatePost);  // Met à jour le post(publication) modifié
     router.delete('/:id', auth, postsCtrl.deletePost); // Supprime un post(publication)
 

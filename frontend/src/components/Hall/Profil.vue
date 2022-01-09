@@ -1,7 +1,7 @@
 <template>
-    <v-app class="d-flex justify-space-between">
+    <v-app class="d-flex justify-space-between profil">
         <top-header/>  <!-- Ici on récupére le composant Header.vue importé et declaré plus bas dans les components-->
-        <v-card class="ma-12" raised>
+        <v-card class="ml-12 profilCard" raised>
                 <div class="d-flex justify-center mb-6">
                     <form id="profile-form" class="p-5" @submit.prevent="submit">
                         <avatar-input ref="avatarInput" v-model="form.avatar" default-src=""></avatar-input>
@@ -165,9 +165,12 @@ export default {
 
 <style lang="scss">
 
-    .logo{
-        margin-top: 5%;
-        margin-left: 10%;
+    .profil{
+        margin-top: 0%;
+        width: 95%;
+    }
+    .profilCard{
+        margin-top: 10%;
     }
     h2{
         margin-bottom: 15px;

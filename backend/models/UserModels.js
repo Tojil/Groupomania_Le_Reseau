@@ -7,7 +7,7 @@ class UserModels {
     constructor() {
     }
     signup(sqlInserts){  // Enregistre un nouvel utilisateur dans la base de données
-        let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL)';
+        let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL, ?)';
         sql = mysql.format(sql, sqlInserts);
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){
@@ -47,7 +47,7 @@ class UserModels {
         })
     }
     seeMyProfile(sqlInserts){  // Permet d'afficher le profil de l'utilisateur avec les données depuis la base de données
-        let sql = 'SELECT firstName, lastName, email FROM users WHERE id = ?';
+        let sql = 'SELECT firstName, lastName, email, imageProfil, FROM users WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){
@@ -59,7 +59,7 @@ class UserModels {
     
     }
     updateUser(sqlInserts){ //  Met à jour les modifications de l'utilisateur, dans la base de données
-        let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ? WHERE id = ?';
+        let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ?, imageProfil = ?, WHERE id = ?';
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){

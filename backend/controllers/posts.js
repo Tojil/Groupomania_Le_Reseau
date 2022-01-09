@@ -12,18 +12,6 @@ exports.getAllPosts = (req, res, next) => {
             res.status(200).json(JSON.stringify(response));
         });
 }
-// Enregistre une nouvelle image
-exports.imagePost = (req, res, next) => {
-    const postObject = JSON.parse(req.body.PostsModels);
-    delete postObject._id;
-    const imageM = new PostsModels({
-        ...postObject,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    });
-    imageM.save()// Enregistre dans la db l'objet et renvoie une promesse
-        .then(() => res.status(201).json({ message: 'Nouvelle image enregistrée !'}))
-        .catch(error => res.status(400).json({ error }));
-};
 
 // Création d'un post (une publication)
 exports.createPost = (req, res, next) => {
@@ -119,23 +107,6 @@ exports.deleteComment = (req, res, next) => {
     postsModels.deleteComment(sqlInserts)
         .then((response) =>{
             res.status(200).json(JSON.stringify(response));
-        })
-}
-//  Supprime un commentaire
-exports.deleteComment = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1];
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    const userId = decodedToken.userId;
-    let commentId = req.params.id;
-    let sqlInserts1 = [commentId];
-    let sqlInserts2 = [commentId, userId];
-    postsModels.deletePost(sqlInserts1, sqlInserts2)
-        .then((response) =>{
-            res.status(200).json(JSON.stringify(response));
-        })
-        .catch((error) =>{
-            console.log(error);
-            res.status(400).json(JSON.stringify(error));
         })
 }
 //  Appel tous les likes

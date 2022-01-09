@@ -54,7 +54,7 @@ export default {
                 this.src = e.target.result;
             }
         }
-    }
+    },
 }
 </script>
 
