@@ -43,6 +43,7 @@ exports.login = (req, res, next) => {
 exports.seeMyProfile = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+    console.log()
     const userId = decodedToken.userId;
     let sqlInserts = [userId];
     userModels.seeMyProfile(sqlInserts)
@@ -60,13 +61,15 @@ exports.updateUser = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
-    let imageProfil = req.body.imageProfil;
+    let imageProfil = req.file.path;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let email = req.body.email;
     let sqlInserts = [firstName, lastName, email, imageProfil, userId];
+    console.log("before update");
     userModels.updateUser(sqlInserts)
         .then((response) =>{
+            console.log(response);
             res.status(200).json(JSON.stringify(response))
         })
         .catch((error) =>{

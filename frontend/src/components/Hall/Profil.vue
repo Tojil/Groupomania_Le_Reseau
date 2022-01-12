@@ -4,7 +4,7 @@
         <v-card class="ml-12 profilCard" raised>
                 <div class="d-flex justify-center mb-6">
                     <form id="profile-form" class="p-5" @submit.prevent="submit">
-                        <avatar-input ref="avatarInput" v-model="form.avatar" default-src=""></avatar-input>
+                        <avatar-input ref="avatarInput" v-model="form.avatar" :defaultsrc="dataGet.imageProfil"></avatar-input>
                     </form>
                 </div>
                 <div class="pencil">
@@ -71,7 +71,8 @@ export default {
             dataGet: { 
                 firstName: "",
                 lastName: "",
-                email: ""
+                email: "",
+                imageProfil: ""
             },
             dataUp: {
                 firstName: "",
@@ -123,11 +124,11 @@ export default {
         updateUser() {
             this.dataUpS = JSON.stringify(this.dataUp);
             let form = new FormData();
-            form.append("imageProfil", this.$refs['avatarInput'].file);
+            form.append("image", this.$refs['avatarInput'].file);
             form.append('firstName', this.dataUp.firstName);
             form.append("lastName", this.dataUp.lastName);
             form.append("email", this.dataUp.email);
-            axios.put("http://localhost:3000/api/auth/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
+            axios.post("http://localhost:3000/api/auth/", form, {headers: {'Content-Type': 'multipart/form-data', Authorization: 'Bearer ' + localStorage.token}})
             .then(response => {
                 let rep = JSON.parse(response.data);
                 console.log(rep);
@@ -138,7 +139,7 @@ export default {
                 console.log(error);
                 this.msg = error  
             })
-        }
+        },
     },
     mounted() {  // Cette methode se lance au moment du chargement du composant
         axios.get("http://localhost:3000/api/auth/", {headers: {Authorization: 'Bearer ' + localStorage.token}})
@@ -147,6 +148,7 @@ export default {
                 this.dataGet.email = profil[0].email;
                 this.dataGet.firstName = profil[0].firstName;
                 this.dataGet.lastName = profil[0].lastName;
+                this.$refs["avatarInput"].src = "http://localhost:3000/"+profil[0].imageProfil;
                 this.dataUp.email = profil[0].email;
                 this.dataUp.firstName = profil[0].firstName;
                 this.dataUp.lastName = profil[0].lastName;

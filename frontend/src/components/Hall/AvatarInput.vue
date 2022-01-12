@@ -5,12 +5,14 @@
             <v-avatar size="150" color="grey">
                 <img :src="src" alt="" class="rounded-full">
             </v-avatar>
-            <button @click="browse()" class="camera">
+            <div v-if="!editMode">
+            <button  @click="browse()" class="camera">
                 <v-icon color="green">mdi-camera</v-icon>
             </button>
             <button @click="remove()" class="cameraX">
                 <v-icon color="red">X</v-icon>
             </button>
+            </div>
         </div>
 
     </div>
@@ -23,13 +25,13 @@ export default {
 
     props: {
         value: File,
-        defaultSrc: String
+        defaultsrc: String
 
     },
 
     data() {
         return {
-            src: this.defaultSrc,
+            src: this.defaultsrc,
             file: null
         }
     },
@@ -40,7 +42,7 @@ export default {
         },
         remove() {
             this.file = null;
-            this.src = this.defaultSrc;
+            this.src = this.defaultsrc;
             this.$$emit('input', this.file);
         },
         change(e) {
@@ -53,7 +55,7 @@ export default {
             reader.onload = (e) => {
                 this.src = e.target.result;
             }
-        }
+        },
     },
 }
 </script>
