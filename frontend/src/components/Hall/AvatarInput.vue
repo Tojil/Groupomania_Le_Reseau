@@ -5,13 +5,21 @@
             <v-avatar size="150" color="grey">
                 <img :src="src" alt="" class="rounded-full">
             </v-avatar>
-            <div v-if="!editMode">
-            <button  @click="browse()" class="camera">
-                <v-icon color="green">mdi-camera</v-icon>
-            </button>
-            <button @click="remove()" class="cameraX">
-                <v-icon color="red">X</v-icon>
-            </button>
+            <div v-if="!bouttons" class="btn d-none">
+                <button  @click="browse()">
+                    <v-icon color="green">mdi-camera</v-icon>
+                </button>
+                <button @click="remove()">
+                    <v-icon color="red">X</v-icon>
+                </button>
+            </div>
+            <div v-else class="btn">
+                <button  @click="browse()">
+                    <v-icon color="green">mdi-camera</v-icon>
+                </button>
+                <button @click="remove()">
+                    <v-icon color="red">X</v-icon>
+                </button>
             </div>
         </div>
 
@@ -32,7 +40,8 @@ export default {
     data() {
         return {
             src: this.defaultsrc,
-            file: null
+            file: null,
+            bouttons: false
         }
     },
 
@@ -67,14 +76,8 @@ export default {
 .profil-photo {
     position: relative;
 }
-.camera {
-    position: absolute;
-    bottom: -10px;
-    left: 0px;
-}
-.cameraX {
-    position: absolute;
-    bottom: -10px;
-    right: 0px;
+.btn{
+    display: flex;
+    justify-content: space-between;
 }
 </style>

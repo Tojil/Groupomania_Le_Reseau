@@ -62,6 +62,9 @@ import AvatarInput from "./AvatarInput.vue"
 
 export default {
     name: "Profil",
+    props: {
+        bouttons: String
+    },
     data() { // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             dialogDel: false,
@@ -102,6 +105,7 @@ export default {
     methods: {
         switchMode() {
             this.editMode = !this.editMode;
+            this.bouttons = !this.bouttons;
         },
         submit() {
             console.log('submitting', this.form)
@@ -181,6 +185,9 @@ export default {
         position: absolute;
         top: 20px;
         right: 20px;
+    }
+    .cache{
+        display: none;
     }
 
 </style>
