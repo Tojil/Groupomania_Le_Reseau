@@ -16,7 +16,7 @@ class UserModels {
             })
         })
     }
-    login(sqlInserts, password){   //  Vérifie que l'utilisateur un bien un compte d'enregistré
+    login(sqlInserts, password){   //  Vérifie que l'utilisateur a bien un compte d'enregistré
         let sql = 'SELECT * FROM users WHERE email = ?';
         sql = mysql.format(sql, sqlInserts);
         

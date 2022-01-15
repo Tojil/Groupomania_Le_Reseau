@@ -5,15 +5,7 @@
             <v-avatar size="150" color="grey">
                 <img :src="src" alt="" class="rounded-full">
             </v-avatar>
-            <div v-if="!bouttons" class="btn d-none">
-                <button  @click="browse()">
-                    <v-icon color="green">mdi-camera</v-icon>
-                </button>
-                <button @click="remove()">
-                    <v-icon color="red">X</v-icon>
-                </button>
-            </div>
-            <div v-else class="btn">
+            <div class="btn">
                 <button  @click="browse()">
                     <v-icon color="green">mdi-camera</v-icon>
                 </button>
