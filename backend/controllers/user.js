@@ -2,7 +2,8 @@ const bcrypt = require('bcrypt');  //bcrpyt permet un cryptage sécurisé
 const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
-const UserModels = require ('../Models/UserModels.js')
+const UserModels = require ('../Models/UserModels.js');
+const fs = require('fs');
 
 let userModels = new UserModels();
 
@@ -90,7 +91,20 @@ exports.deleteUser = (req, res, next) => {
             console.log(error);
             res.status(400).json(error)
         })
-} 
+}
+
+exports.deleteImage = (req, res, next) => {
+    Thing.findOne({ _id: req.params.id })
+      .then(thing => {
+        const filename = thing.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+          Thing.deleteOne({ _id: req.params.id })
+            .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+            .catch(error => res.status(400).json({ error }));
+        });
+      })
+      .catch(error => res.status(500).json({ error }));
+  };
  
 
 
