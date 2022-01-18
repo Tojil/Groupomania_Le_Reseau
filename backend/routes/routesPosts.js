@@ -11,6 +11,7 @@ try{
     router.post('/', auth, multer, postsCtrl.createPost);  // Enregistre le post(publication) créé
     router.put('/:id', auth, multer, postsCtrl.updatePost);  // Met à jour le post(publication) modifié
     router.delete('/:id', auth, postsCtrl.deletePost); // Supprime un post(publication)
+    router.delete('/images/', auth, multer, postsCtrl.deleteImage);
 
     
     router.get('/likes', auth, postsCtrl.getAllLikes);  //  Récupére tous les likes

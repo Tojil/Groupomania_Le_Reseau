@@ -23,7 +23,7 @@ class ModModels {
         return new Promise((resolve) =>{
             connecTodb.query(sql, function (err, result, fields){
                 if (err) throw err;
-                resolve({message : 'Post supprimé !'});
+                resolve({message : 'Post supprimé !'}); 
             })
         })
     };
