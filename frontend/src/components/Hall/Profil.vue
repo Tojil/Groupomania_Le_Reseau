@@ -62,9 +62,6 @@ import AvatarInput from "./AvatarInput.vue"
 
 export default {
     name: "Profil",
-    props: {
-        bouttons: String
-    },
     data() { // Ici on stocke les données et les regles que nous allons utiliser en tant que variables reactives
         return{
             dialogDel: false,
@@ -103,9 +100,11 @@ export default {
     },
     // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
     methods: {
+        
         switchMode() {
             this.editMode = !this.editMode;
-            this.bouttons = !this.bouttons;
+            this.$refs["avatarInput"].editB = !this.$refs["avatarInput"].editB;
+            
         },
         submit() {
             console.log('submitting', this.form)

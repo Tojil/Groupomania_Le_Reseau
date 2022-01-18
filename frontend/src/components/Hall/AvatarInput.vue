@@ -4,8 +4,9 @@
         <div class="profil-photo">
             <v-avatar size="150" color="grey">
                 <img :src="src" alt="" class="rounded-full">
+                
             </v-avatar>
-            <div class="btn">
+            <div v-if="!editB" class="btn d-none">
                 <button  @click="browse()">
                     <v-icon color="green">mdi-camera</v-icon>
                 </button>
@@ -13,6 +14,15 @@
                     <v-icon color="red">X</v-icon>
                 </button>
             </div>
+            <div v-else class="btn">
+                <button  @click="browse()">
+                    <v-icon color="green">mdi-camera</v-icon>
+                </button>
+                <button @click="remove()">
+                    <v-icon color="red">X</v-icon>
+                </button>
+            </div>
+
         </div>
 
     </div>
@@ -25,18 +35,16 @@ export default {
 
     props: {
         value: File,
-        defaultsrc: String
-
+        defaultsrc: String,
     },
 
     data() {
         return {
             src: this.defaultsrc,
             file: null,
-            bouttons: false
+            editB: false,
         }
     },
-
     methods: {
         browse() {
             this.$refs.file.click();
@@ -44,7 +52,7 @@ export default {
         remove() {
             this.file = null;
             this.src = this.defaultsrc;
-            this.$$emit('input', this.file);
+            this.$emit('input', this.file);
         },
         change(e) {
             this.file = e.target.files[0];
