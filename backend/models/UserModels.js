@@ -59,7 +59,13 @@ class UserModels {
     
     }
     updateUser(sqlInserts){ //  Met à jour les modifications de l'utilisateur, dans la base de données
-        let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ?, imageProfil = ? WHERE id = ?';
+        let sql = 'UPDATE users SET firstName = ?, lastName = ?, email = ?';
+        if(sqlInserts.length == 5){
+            sql += ", imageProfil = ?";
+        }
+        sql += " WHERE id = ?";
+        console.log(sql);
+        console.log(sqlInserts);
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){

@@ -46,8 +46,16 @@ class PostsModels {
     deletePost(sqlInserts1, sqlInserts2){  //  Supprime un post(publication) de la base de données
         let sql1 = 'SELECT * FROM posts where id = ?';
         sql1 = mysql.format(sql1, sqlInserts1);
-        return new Promise((resolve, reject) =>{
+        return new Promise((resolve, reject) =>{    
             connecTodb.query(sql1, function (err, result, fields){
+                result[0].then(post => {
+                    console.log(result[0]);
+                    const filename = post[0].media;
+                    console.log(post[0]);
+                    console.log(filename);
+                    fs.unlink(filename, () => console.log("ok"));
+                })
+
                 if (err) throw err;
                 if(sqlInserts2[1] == result[0].userId){
                     let sql2 = 'DELETE FROM posts WHERE id = ? AND userId = ?';

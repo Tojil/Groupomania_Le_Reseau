@@ -4,6 +4,7 @@ const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
 const UserModels = require ('../Models/UserModels.js');
 const fs = require('fs');
+const { response } = require('express');
 
 let userModels = new UserModels();
 
@@ -58,15 +59,29 @@ exports.seeMyProfile = (req, res, next) => {
 }   
 // Met à jour les informations de l'utilisateur
 exports.updateUser = (req, res, next) => {
+    
     console.log(req.file)
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
-    let imageProfil = req.file.path;
+    userModels.seeMyProfile([userId]).then(user => {
+        console.log(user);
+        const filename = user[0].imageProfil; 
+        console.log(filename);
+        fs.unlink(filename, () => console.log("ok")); 
+    });
+    let imageProfil = undefined;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
     let email = req.body.email;
-    let sqlInserts = [firstName, lastName, email, imageProfil, userId];
+    let sqlInserts = undefined;
+    if (req.file){
+        imageProfil = req.file.path;
+        sqlInserts = [firstName, lastName, email, imageProfil, userId];
+    } else {
+        sqlInserts = [firstName, lastName, email, userId];
+    }
+    
     console.log("before update");
     userModels.updateUser(sqlInserts)
         .then((response) =>{
