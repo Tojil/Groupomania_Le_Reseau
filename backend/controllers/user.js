@@ -11,6 +11,12 @@ let userModels = new UserModels();
 // Enregistrement d'un nouvel usager
 exports.signup = (req, res, next) => {
     let email = req.body.email;
+    // let sqlInserts = [email];
+    // mysql.createPool.query(sqlInserts, [email], (error, results) => {
+    //     if(results.rows.length) {
+    //         res.send("Cette email existe déjà")
+    //     }
+    // })
 	let password = req.body.password;
 	let firstName = req.body.firstName;
     let lastName = req.body.lastName;

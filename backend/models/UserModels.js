@@ -9,6 +9,7 @@ class UserModels {
     signup(sqlInserts){  // Enregistre un nouvel utilisateur dans la base de données
         let sql = 'INSERT INTO users VALUES(NULL, ?, ?, ?, ?, NULL, ?)';
         sql = mysql.format(sql, sqlInserts);
+        
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){
                 if (err) reject({error : 'Erreur dans l\'inscription'});

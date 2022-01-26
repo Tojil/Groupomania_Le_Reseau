@@ -1,5 +1,6 @@
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
+const fs = require('fs');
 
 
 class PostsModels {
@@ -48,14 +49,9 @@ class PostsModels {
         sql1 = mysql.format(sql1, sqlInserts1);
         return new Promise((resolve, reject) =>{    
             connecTodb.query(sql1, function (err, result, fields){
-                result[0].then(post => {
-                    console.log(result[0]);
-                    const filename = post[0].media;
-                    console.log(post[0]);
+                    const filename = result[0].media;
                     console.log(filename);
                     fs.unlink(filename, () => console.log("ok"));
-                })
-
                 if (err) throw err;
                 if(sqlInserts2[1] == result[0].userId){
                     let sql2 = 'DELETE FROM posts WHERE id = ? AND userId = ?';
@@ -67,8 +63,8 @@ class PostsModels {
                 }else{
                     reject({error: 'fonction indisponible'});
                 }
-            
             });
+            
         })
     }
     getComments(sqlInserts){  //  Récupére tous les commentaires depuis la base de données
