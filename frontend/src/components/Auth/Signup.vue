@@ -10,11 +10,20 @@
                 </v-form>
                 <template>
                   <div class="text-center">
+                      <v-btn :disabled="!valid" class="success" v-bind="attrs" @click="sendSignup()">Confirmer</v-btn>
                     <v-dialog v-model="dialog" persistent width="500">  <!--  Boîte de dialogue de confirmation de creation de compte  -->
-                      <template v-slot:activator="{ on, attrs }">
-                        <v-btn :disabled="!valid" class="success" v-bind="attrs" v-on="on">Confirmer</v-btn>
-                      </template>
-                      <v-card>
+                        <v-card v-if="error" class="text-error">
+                            <v-card-title class="text-center">
+                          Cette email existe déjà ! <br/>
+                          Veuillez vous connecter avec une autre adresse email .
+                            </v-card-title>
+                        <v-divider></v-divider>
+                        <v-card-actions>
+                          <v-spacer></v-spacer>
+                          <v-btn @click="closeDialog()" class="error">Fermer</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
+                        </v-card-actions>
+                        </v-card>
+                      <v-card v-else>
                         <v-card-title class="text-center">
                           Votre compte a été créé ! <br/>
                           Veuillez vous connecter pour accéder à l'intranet.
@@ -72,10 +81,14 @@ export default {
             form: true,
             msg: false,
             message: "",
-            dialog: false
+            dialog: false,
+            error: false
         //}
     }),
     methods: {  // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application
+        closeDialog(){
+            this.dialog = false;
+        },
         sendSignup(){  // Cette methode envoie l'enregistrement du nouvel utilisateur dans la base de donnés
             this.dataSignupS = JSON.stringify(this.dataSignup)
             axios.post('http://localhost:3000/api/auth/signup', this.dataSignupS, {headers: {'Content-Type': 'application/json'}})
@@ -84,11 +97,15 @@ export default {
                 this.message = sign.message;
                 this.form = false;
                 this.msg = true;
+                this.dialog = true;
+                this.error = false;
             })
             .catch(error => {
                 console.log(error);
                 this.message = error;
-                this.msg = true; 
+                this.msg = true;
+                this.error = true;
+                this.dialog = true;
                 });
         }
     }
