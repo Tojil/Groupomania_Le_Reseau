@@ -129,15 +129,15 @@ exports.postLike = (req, res, next) => {
         }) 
 }
 exports.deleteImage = (req, res, next) => {
-    //     const token = req.headers.authorization.split(' ')[1];
-    //     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    //     const userId = decodedToken.userId;
-    //     userModels.seeMyProfile([userId]).then(user => {
-    //     console.log(user);
-    //     const filename = user[0].imageProfil; 
-    //     console.log(filename);
-    //     fs.unlink(filename, () => console.log("ok")); 
-    // })
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+        const userId = decodedToken.userId;
+        userModels.seeMyProfile([userId]).then(user => {
+        console.log(user);
+        const filename = user[0].imageProfil; 
+        console.log(filename);
+        fs.unlink(filename, () => console.log("ok")); 
+    })
   }
 
 

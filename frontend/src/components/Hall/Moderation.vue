@@ -88,7 +88,6 @@ export default {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);
                     window.location.assign('http://localhost:8081/hall/moderation');
-
                 })
                 .catch(error => {
                     console.log(error);    
