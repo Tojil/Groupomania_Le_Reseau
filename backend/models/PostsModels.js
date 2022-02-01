@@ -50,7 +50,6 @@ class PostsModels {
         return new Promise((resolve, reject) =>{    
             connecTodb.query(sql1, function (err, result, fields){
                     const filename = result[0].media;
-                    console.log(filename);
                     fs.unlink(filename, () => console.log("ok"));
                 if (err) throw err;
                 if(sqlInserts2[1] == result[0].userId){
