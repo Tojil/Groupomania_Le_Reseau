@@ -66,8 +66,6 @@ class UserModels {
             sql += ", imageProfil = ?";
         }
         sql += " WHERE id = ?";
-        console.log(sql);
-        console.log(sqlInserts);
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){
@@ -81,6 +79,22 @@ class UserModels {
         let sql = 'DELETE FROM users WHERE id = ?'; 
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
+            connecTodb.query(sql, function(err, result){
+                if (err) return reject({error : 'fonction indisponible'});
+                resolve({message : 'Utilisateur supprimé'});
+            }) 
+
+        })
+    
+    }
+    deleteImage(sqlInserts){  // Supprime l'utilisteur de la base de données
+        let sql = 'DELETE FROM users WHERE id = ?'; 
+        sql = mysql.format(sql,sqlInserts);
+        return new Promise((resolve, reject) =>{
+            console.log(user);
+            const filename = user[0].imageProfil; 
+            console.log(filename);
+            fs.unlink(filename, () => console.log("ok"));
             connecTodb.query(sql, function(err, result){
                 if (err) return reject({error : 'fonction indisponible'});
                 resolve({message : 'Utilisateur supprimé'});

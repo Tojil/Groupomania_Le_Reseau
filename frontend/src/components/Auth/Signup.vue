@@ -14,26 +14,26 @@
                     <v-dialog v-model="dialog" persistent width="500">  <!--  Boîte de dialogue de confirmation de creation de compte  -->
                         <v-card v-if="error" class="text-error">
                             <v-card-title class="text-center">
-                          Cette email existe déjà ! <br/>
-                          Veuillez vous connecter avec une autre adresse email .
+                                Cette email existe déjà ! <br/>
+                                Veuillez vous connecter avec une autre adresse email .
                             </v-card-title>
-                        <v-divider></v-divider>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn @click="closeDialog()" class="error">Fermer</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
-                        </v-card-actions>
+                            <v-divider></v-divider>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn @click="closeDialog()" class="error">Fermer</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
+                            </v-card-actions>
                         </v-card>
-                      <v-card v-else>
-                        <v-card-title class="text-center">
-                          Votre compte a été créé ! <br/>
-                          Veuillez vous connecter pour accéder à l'intranet.
-                        </v-card-title>
-                        <v-divider></v-divider>
-                        <v-card-actions>
-                          <v-spacer></v-spacer>
-                          <v-btn @click="sendSignup()" class="success">Se connecter</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
-                        </v-card-actions>
-                      </v-card>
+                        <v-card v-if="success" class="text-success">
+                            <v-card-title class="text-center">
+                                Votre compte a été créé ! <br/>
+                                Veuillez vous connecter pour accéder à l'intranet.
+                            </v-card-title>
+                            <v-divider></v-divider>
+                            <v-card-actions>
+                                <v-spacer></v-spacer>
+                                <v-btn @click="sendSignup()" class="success">Se connecter</v-btn>  <!--  Envoie le formulaire du nouveau membre à la base de données et se connect  -->
+                            </v-card-actions>
+                        </v-card>
                     </v-dialog>
                   </div>
                 </template>
@@ -82,7 +82,8 @@ export default {
             msg: false,
             message: "",
             dialog: false,
-            error: false
+            error: false,
+            success: false
         //}
     }),
     methods: {  // Methods permet de créer des méthodes afin d'y placer un block de code réutilisable dans la application

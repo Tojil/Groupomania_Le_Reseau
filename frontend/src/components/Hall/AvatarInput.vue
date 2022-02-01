@@ -30,6 +30,7 @@
 
 
 <script>
+import axios from "axios"
 
 export default {
 
@@ -52,7 +53,16 @@ export default {
         remove() {
             this.file = null;
             this.src = this.defaultsrc;
-            this.$emit('input', this.file);
+            //this.$emit('input', this.file);
+            axios.delete("http://localhost:3000/api/auth/images", {headers: {Authorization: 'Bearer ' + localStorage.token}})
+                .then(response => {
+                    let rep = JSON.parse(response.data);
+                    console.log(rep.message);
+                    window.location.assign('http://localhost:8081/hall/profil');
+                })
+                .catch(error => {
+                    console.log(error);    
+                })
         },
         change(e) {
             this.file = e.target.files[0];

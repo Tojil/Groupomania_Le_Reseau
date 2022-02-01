@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');  //bcrpyt permet un cryptage sécurisé
 const jwt = require('jsonwebtoken');  //jwt permet l'échange sécurisé de jetons (tokens)
 const connecTodb = require('../connecTodb.js');
 const mysql = require('mysql');
-const UserModels = require ('../Models/UserModels.js');
+const UserModels = require ('../Models/UserModels');
 const fs = require('fs');
 const { response } = require('express');
 
@@ -65,17 +65,9 @@ exports.seeMyProfile = (req, res, next) => {
 }   
 // Met à jour les informations de l'utilisateur
 exports.updateUser = (req, res, next) => {
-    
-    console.log(req.file)
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
     const userId = decodedToken.userId;
-    userModels.seeMyProfile([userId]).then(user => {
-        console.log(user);
-        const filename = user[0].imageProfil; 
-        console.log(filename);
-        fs.unlink(filename, () => console.log("ok")); 
-    });
     let imageProfil = undefined;
     let firstName = req.body.firstName;
     let lastName = req.body.lastName;
@@ -87,8 +79,6 @@ exports.updateUser = (req, res, next) => {
     } else {
         sqlInserts = [firstName, lastName, email, userId];
     }
-    
-    console.log("before update");
     userModels.updateUser(sqlInserts)
         .then((response) =>{
             console.log(response);
@@ -115,16 +105,15 @@ exports.deleteUser = (req, res, next) => {
 }
 
 exports.deleteImage = (req, res, next) => {
-    Thing.findOne({ _id: req.params.id })
-      .then(thing => {
-        const filename = thing.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {
-          Thing.deleteOne({ _id: req.params.id })
-            .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
-            .catch(error => res.status(400).json({ error }));
-        }); 
-      })
-      .catch(error => res.status(500).json({ error }));
+        const token = req.headers.authorization.split(' ')[1];
+        const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
+        const userId = decodedToken.userId;
+        userModels.seeMyProfile([userId]).then(user => {
+        console.log(user);
+        const filename = user[0].imageProfil; 
+        console.log(filename);
+        fs.unlink(filename, () => console.log("ok")); 
+    })
   }
  
 
