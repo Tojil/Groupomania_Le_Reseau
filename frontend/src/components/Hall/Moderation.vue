@@ -83,7 +83,7 @@ export default {
             this.showComments = true
         },
         deletePost(pId){   //  Cette methode sert à supprimer un post(publication)
-            axios.delete("http://localhost:3000/api/posts/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
+            axios.delete("http://localhost:3000/api/moderation/post/" + pId, {headers: {Authorization: 'Bearer ' + localStorage.token}})
                 .then(response => {
                     let rep = JSON.parse(response.data);
                     console.log(rep.message);

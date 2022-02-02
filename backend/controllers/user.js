@@ -51,7 +51,6 @@ exports.login = (req, res, next) => {
 exports.seeMyProfile = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
-    console.log()
     const userId = decodedToken.userId;
     let sqlInserts = [userId];
     userModels.seeMyProfile(sqlInserts)
@@ -81,7 +80,6 @@ exports.updateUser = (req, res, next) => {
     }
     userModels.updateUser(sqlInserts)
         .then((response) =>{
-            console.log(response);
             res.status(200).json(JSON.stringify(response))
         })
         .catch((error) =>{
@@ -109,9 +107,7 @@ exports.deleteImage = (req, res, next) => {
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
         userModels.seeMyProfile([userId]).then(user => {
-        console.log(user);
         const filename = user[0].imageProfil; 
-        console.log(filename);
         fs.unlink(filename, () => console.log("ok")); 
     })
   }

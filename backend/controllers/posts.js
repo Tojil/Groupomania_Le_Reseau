@@ -15,7 +15,6 @@ exports.getAllPosts = (req, res, next) => {
 
 // Création d'un post (une publication)
 exports.createPost = (req, res, next) => {
-    console.log(req.file)
     let title = req.body.title;
     let userId = req.body.userId;
     let content = req.body.content;
@@ -133,9 +132,7 @@ exports.deleteImage = (req, res, next) => {
         const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET');
         const userId = decodedToken.userId;
         userModels.seeMyProfile([userId]).then(user => {
-        console.log(user);
         const filename = user[0].imageProfil; 
-        console.log(filename);
         fs.unlink(filename, () => console.log("ok")); 
     })
   }

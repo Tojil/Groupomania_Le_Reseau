@@ -12,7 +12,6 @@ class UserModels {
         
         return new Promise((resolve, reject) =>{
             connecTodb.query(sql, function(err, result){
-                console.log(err)
                 if (err) reject({error : 'Erreur dans l\'inscription'});
                 resolve({message : 'Nouvel utilisateur !'})
             })
@@ -91,9 +90,7 @@ class UserModels {
         let sql = 'DELETE FROM users WHERE id = ?'; 
         sql = mysql.format(sql,sqlInserts);
         return new Promise((resolve, reject) =>{
-            console.log(user);
             const filename = user[0].imageProfil; 
-            console.log(filename);
             fs.unlink(filename, () => console.log("ok"));
             connecTodb.query(sql, function(err, result){
                 if (err) return reject({error : 'fonction indisponible'});
