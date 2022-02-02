@@ -42,7 +42,8 @@ Démarrez l'application : npm run serve
 Testez l'application
 Ouvrez votre navigateur et allez sur : http://localhost:8081/
 
-Pour se Connecter en tant que moderateur
+
+Pour se Connecter en tant que Moderateur
 
 email:          modera@groupomania.com
 Mot de passe:   Modera123
